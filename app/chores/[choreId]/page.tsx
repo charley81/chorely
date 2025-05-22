@@ -1,17 +1,16 @@
 import { initialChores } from '@/app/utils/data';
+import { Placeholder } from '@/components/placeholder';
 
 type ChoresPageProps = {
-  params: {
-    choreId: string;
-  };
+  params: Promise<{ choreId: string }>;
 };
 
-export default function ChorePage({ params }: ChoresPageProps) {
-  const { choreId } = params;
+export default async function ChorePage({ params }: ChoresPageProps) {
+  const { choreId } = await params;
   const chore = initialChores.find((chore) => chore.id === choreId);
 
   if (!chore) {
-    return <div>Chore: {params.choreId} not found</div>;
+    return <Placeholder label="Chore not found" />;
   }
   return <div>ChoresPage for {chore?.title}</div>;
 }
