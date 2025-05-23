@@ -1,9 +1,9 @@
-import Link from 'next/link';
-
 import { initialChores } from '@/app/utils/data';
 import { choresPath } from '@/app/utils/paths';
 import { Placeholder } from '@/components/placeholder';
 import { Button } from '@/components/ui/button';
+import { ChoreItem } from '@/features/chore/components/chore-item';
+import Link from 'next/link';
 
 type ChoresPageProps = {
   params: Promise<{ choreId: string }>;
@@ -28,5 +28,9 @@ export default async function ChorePage({ params }: ChoresPageProps) {
       </div>
     );
   }
-  return <div>ChoresPage for {chore?.title}</div>;
+  return (
+    <div className="flex justify-center animate-fade-in-from-top">
+      <ChoreItem chore={chore} isDetail />
+    </div>
+  );
 }
