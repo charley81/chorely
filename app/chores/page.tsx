@@ -1,18 +1,16 @@
 import { Heading } from '@/components/heading';
-import { ChoreItem } from '@/features/chore/components/chore-item';
-import { getChores } from '@/features/queries/get-chores';
+import { Suspense } from 'react';
+import { ChoreList } from '@/features/chore/components/chore-list';
+import { Spinner } from '@/components/spinner';
 
-export default async function ChoresPage() {
-  const chores = await getChores();
+export default function ChoresPage() {
   return (
     <div className="flex flex-1 flex-col gap-y-8">
       <Heading title="Chores" description="A place for all your chores" />
 
-      <div className="flex flex-1 flex-col items-center gap-y-4 animate-fade-in-from-top">
-        {chores.map((chore) => (
-          <ChoreItem key={chore.id} chore={chore} />
-        ))}
-      </div>
+      <Suspense fallback={<Spinner />}>
+        <ChoreList />
+      </Suspense>
     </div>
   );
 }

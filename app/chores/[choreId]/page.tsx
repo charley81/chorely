@@ -1,8 +1,8 @@
-import { initialChores } from '@/app/utils/data';
 import { choresPath } from '@/app/utils/paths';
 import { Placeholder } from '@/components/placeholder';
 import { Button } from '@/components/ui/button';
 import { ChoreItem } from '@/features/chore/components/chore-item';
+import { getChore } from '@/features/chore/queries/get-chore';
 import Link from 'next/link';
 
 type ChoresPageProps = {
@@ -11,7 +11,7 @@ type ChoresPageProps = {
 
 export default async function ChorePage({ params }: ChoresPageProps) {
   const { choreId } = await params;
-  const chore = initialChores.find((chore) => chore.id === choreId);
+  const chore = await getChore(choreId);
 
   if (!chore) {
     return (
