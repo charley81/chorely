@@ -1,4 +1,5 @@
-import { chorePath } from '@/app/utils/paths';
+'use client';
+
 import { Button } from '@/app/components/ui/button';
 import {
   Card,
@@ -6,11 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
-import clsx from 'clsx';
-import { SquareArrowOutUpRight } from 'lucide-react';
-import Link from 'next/link';
-import { CHORE_ICONS } from '../constants';
 import { Chore } from '@/app/generated/prisma';
+import { chorePath } from '@/app/utils/paths';
+import clsx from 'clsx';
+import { LucideSquareArrowOutUpRight, LucideTrash } from 'lucide-react';
+import Link from 'next/link';
+import { deleteChore } from '../actions/delete-chore';
+import { CHORE_ICONS } from '../constants';
 
 type ChoreItemProps = {
   chore: Chore;
@@ -18,11 +21,21 @@ type ChoreItemProps = {
 };
 
 export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const handleDeleteChore = async () => {
+    await deleteChore(chore.id);
+  };
+
   const detailButton = (
     <Button variant="outline" size="icon" asChild>
       <Link href={chorePath(chore.id)} className="underline">
-        <SquareArrowOutUpRight />
+        <LucideSquareArrowOutUpRight className="h-4 w-4" />
       </Link>
+    </Button>
+  );
+
+  const deleteButton = (
+    <Button variant="outline" size="icon" onClick={handleDeleteChore}>
+      <LucideTrash className="h-4 w-4" />
     </Button>
   );
 
@@ -50,9 +63,9 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
           </span>
         </CardContent>
       </Card>
-      {isDetail ? null : (
-        <div className="flex flex-col gap-y-1">{detailButton}</div>
-      )}
+      <div className="flex flex-col gap-y-1">
+        {isDetail ? deleteButton : detailButton}
+      </div>
     </div>
   );
 }
