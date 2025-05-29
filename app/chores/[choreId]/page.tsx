@@ -14,7 +14,7 @@ export default async function ChorePage({ params }: ChoresPageProps) {
     notFound();
   }
   return (
-    <div className="flex justify-center animate-fade-in-from-top">
+    <div className="flex justify-center animate-fade-in-from-top mt-16 w-full">
       <ChoreItem chore={chore} isDetail />
     </div>
   );

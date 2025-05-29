@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { ThemeSwitcher } from './theme/theme-switcher';
 import { buttonVariants } from './ui/button';
 
-export function Header() {
+export function MainNav() {
   return (
-    <nav className="flex justify-between w-full py-2.5 px-5 border-b supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 bg-background/95">
+    <nav className="flex justify-between w-full p-6 border-b supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 bg-background/95">
       <div className="flex align-items gap-x-2">
         <Link
           href={homePath()}
