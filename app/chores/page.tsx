@@ -1,9 +1,9 @@
-import { Heading } from '@/components/heading';
+import { Heading } from '@/app/components/heading';
 import { Suspense } from 'react';
-import { ChoreList } from '@/features/chore/components/chore-list';
-import { Spinner } from '@/components/spinner';
+import { ChoreList } from '@/app/features/chore/components/chore-list';
+import { Spinner } from '@/app/components/spinner';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Placeholder } from '@/components/placeholder';
+import { Placeholder } from '@/app/components/placeholder';
 
 export default function ChoresPage() {
   return (

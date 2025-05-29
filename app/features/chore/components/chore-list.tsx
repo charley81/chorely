@@ -1,4 +1,4 @@
-import { getChores } from '@/features/chore/queries/get-chores';
+import { getChores } from '@/app/features/chore/queries/get-chores';
 import { ChoreItem } from './chore-item';
 
 export async function ChoreList() {
