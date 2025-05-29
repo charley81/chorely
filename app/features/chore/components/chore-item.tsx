@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { CHORE_ICONS } from '../constants';
-import { Chore } from '../types';
+import { Chore } from '@/app/generated/prisma';
 
 type ChoreItemProps = {
   chore: Chore;
@@ -46,7 +46,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
               'line-clamp-3': !isDetail,
             })}
           >
-            {chore.content + chore.content + chore.content}
+            {chore.content}
           </span>
         </CardContent>
       </Card>
