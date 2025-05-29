@@ -1,5 +1,5 @@
-import { ChoreItem } from '@/features/chore/components/chore-item';
-import { getChore } from '@/features/chore/queries/get-chore';
+import { ChoreItem } from '@/app/features/chore/components/chore-item';
+import { getChore } from '@/app/features/chore/queries/get-chore';
 import { notFound } from 'next/navigation';
 
 type ChoresPageProps = {

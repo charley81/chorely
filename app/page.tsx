@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Heading } from '@/components/heading';
+import { Heading } from '@/app/components/heading';
 import { choresPath } from './utils/paths';
 
 export default function HomePage() {
