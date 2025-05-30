@@ -6,12 +6,13 @@ import {
   CardTitle,
 } from '@/app/components/ui/card';
 import { Chore } from '@/app/generated/prisma';
-import { chorePath } from '@/app/utils/paths';
+import { choreEditPath, chorePath } from '@/app/utils/paths';
 import clsx from 'clsx';
 import { LucideSquareArrowOutUpRight, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
 import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
+import { LucidePencil } from 'lucide-react';
 
 type ChoreItemProps = {
   chore: Chore;
@@ -23,6 +24,14 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     <Button variant="outline" size="icon" asChild>
       <Link prefetch href={chorePath(chore.id)} className="underline">
         <LucideSquareArrowOutUpRight className="h-4 w-4" />
+      </Link>
+    </Button>
+  );
+
+  const editButton = (
+    <Button variant="outline" size="icon" asChild>
+      <Link prefetch href={choreEditPath(chore.id)}>
+        <LucidePencil className="h-4 w-4" />
       </Link>
     </Button>
   );
@@ -60,7 +69,18 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         </CardContent>
       </Card>
       <div className="flex flex-col gap-y-1">
-        {isDetail ? deleteButton : detailButton}
+        {isDetail ? (
+          <>
+            {' '}
+            {editButton}
+            {deleteButton}
+          </>
+        ) : (
+          <>
+            {detailButton}
+            {editButton}
+          </>
+        )}
       </div>
     </div>
   );
