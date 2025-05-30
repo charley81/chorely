@@ -3,14 +3,12 @@ import ChoreUpsertForm from '@/app/features/chore/components/chore-upsert-form';
 import { getChore } from '@/app/features/chore/queries/get-chore';
 import { notFound } from 'next/navigation';
 
-type EditChorePageProps = {
-  params: {
-    choreId: string;
-  };
+type ChoreEditPageProps = {
+  params: Promise<{ choreId: string }>;
 };
 
-export default async function EditChorePage({ params }: EditChorePageProps) {
-  const { choreId } = params;
+export default async function ChoreEditPage({ params }: ChoreEditPageProps) {
+  const { choreId } = await params;
   const chore = await getChore(choreId);
 
   if (!chore) {
