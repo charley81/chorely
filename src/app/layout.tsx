@@ -31,13 +31,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="supports-backdrop-blur:bg-background/60 fixed top-0 right-0 left-0 z-20 mx-auto w-full bg-slate-600 py-4 pt-4 font-bold backdrop-blur">
-          <div className="mx-auto flex max-w-3xl gap-x-4 px-24">
+        <nav className="fixed top-0 right-0 left-0 z-20 mx-auto w-full bg-slate-50 p-4 font-bold text-black">
+          <div className="mx-auto flex max-w-3xl gap-x-2">
             <Link href={homePath()}>Home</Link>
             <Link href={choresPath()}>Chores</Link>
           </div>
         </nav>
-        <main className="mx-auto max-w-3xl p-24">{children}</main>
+        <main className="mx-auto mt-40 max-w-3xl px-4">{children}</main>
       </body>
     </html>
   );
