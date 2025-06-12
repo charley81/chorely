@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1 className="text-center text-6xl mt-8">start here</h1>;
+  return <h1 className="mt-20 text-center text-6xl">start here</h1>;
 }
