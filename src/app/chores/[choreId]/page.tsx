@@ -1,18 +1,23 @@
+import { initialChores } from '@/data';
+
 type SingleChorePageProps = {
-  params: {
-    choreId: string;
-  };
+  params: Promise<{ choreId: string }>;
 };
 
 export default async function SingleChorePage({
   params,
 }: SingleChorePageProps) {
   const { choreId } = await params;
+  const chore = initialChores.find((chore) => chore.id === choreId);
+
+  if (!chore) {
+    return <h3 className="mt-20 text-6xl">Chore not found</h3>;
+  }
+
   return (
     <div>
-      <h1 className="mt-20 text-center text-6xl">
-        Single Chore Page for chore {choreId}
-      </h1>
+      <h2 className="mt-20 text-2xl">{chore.title}</h2>
+      <p className="text-xl">{chore.conent}</p>
     </div>
   );
 }
