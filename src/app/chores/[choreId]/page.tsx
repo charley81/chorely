@@ -11,13 +11,13 @@ export default async function SingleChorePage({
   const chore = initialChores.find((chore) => chore.id === choreId);
 
   if (!chore) {
-    return <h3 className="mt-20 text-6xl">Chore not found</h3>;
+    return <h3 className="text-6xl">Chore not found</h3>;
   }
 
   return (
     <div>
-      <h2 className="mt-20 text-2xl">{chore.title}</h2>
-      <p className="text-xl">{chore.conent}</p>
+      <h2 className="text-2xl font-bold">{chore.title}</h2>
+      <p className="">{chore.conent}</p>
     </div>
   );
 }

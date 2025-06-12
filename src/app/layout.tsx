@@ -2,6 +2,9 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Link from 'next/link';
+
+import { choresPath, homePath } from '@/path';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,7 +31,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <nav className="supports-backdrop-blur:bg-background/60 fixed top-0 right-0 left-0 z-20 mx-auto w-full bg-slate-600 py-4 pt-4 font-bold backdrop-blur">
+          <div className="mx-auto flex max-w-3xl gap-x-4 px-24">
+            <Link href={homePath()}>Home</Link>
+            <Link href={choresPath()}>Chores</Link>
+          </div>
+        </nav>
+        <main className="mx-auto max-w-3xl p-24">{children}</main>
       </body>
     </html>
   );
