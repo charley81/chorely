@@ -30,7 +30,7 @@ const CHORE_ICONS = {
 export default function ChoresPage() {
   return (
     <div>
-      <h1 className="text-4xl">Chores Page</h1>
+      <h1 className="text-4xl font-bold">Chores Page</h1>
       <div className="mt-20 flex max-w-2xl flex-col gap-y-4">
         {initialChores.map((chore) => (
           <Card key={chore.id} className="animate-fade-in-from-top">

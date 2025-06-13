@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { LucideBrushCleaning } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
@@ -33,12 +34,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <nav className="fixed top-0 right-0 left-0 z-20 mx-auto w-full bg-slate-50 p-4 font-bold text-black">
-          <div className="mx-auto flex max-w-3xl gap-x-2">
+          <div className="mx-auto flex max-w-3xl items-center justify-between gap-x-2">
             <Link
               href={homePath()}
-              className={buttonVariants({ variant: 'outline' })}
+              className={
+                (buttonVariants({ variant: 'ghost' }),
+                'flex gap-x-1 text-xl font-bold')
+              }
             >
-              Home
+              <span className="text-blue-500">
+                <LucideBrushCleaning />
+              </span>
+              Chorely
             </Link>
             <Link
               href={choresPath()}
