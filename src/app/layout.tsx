@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 
+import { buttonVariants } from '@/components/ui/button';
 import { choresPath, homePath } from '@/path';
 
 const geistSans = Geist({
@@ -33,8 +34,18 @@ export default function RootLayout({
       >
         <nav className="fixed top-0 right-0 left-0 z-20 mx-auto w-full bg-slate-50 p-4 font-bold text-black">
           <div className="mx-auto flex max-w-3xl gap-x-2">
-            <Link href={homePath()}>Home</Link>
-            <Link href={choresPath()}>Chores</Link>
+            <Link
+              href={homePath()}
+              className={buttonVariants({ variant: 'outline' })}
+            >
+              Home
+            </Link>
+            <Link
+              href={choresPath()}
+              className={buttonVariants({ variant: 'secondary' })}
+            >
+              Chores
+            </Link>
           </div>
         </nav>
         <main className="mx-auto mt-40 max-w-3xl px-4">{children}</main>
