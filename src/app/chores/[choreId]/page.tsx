@@ -15,7 +15,7 @@ export default async function SingleChorePage({
   }
 
   return (
-    <div>
+    <div className="animate-fade-in-from-top">
       <h2 className="text-2xl font-bold">{chore.title}</h2>
       <p className="">{chore.conent}</p>
     </div>

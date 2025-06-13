@@ -26,7 +26,10 @@ export default function ChoresPage() {
       <h1 className="text-4xl">Chores Page</h1>
       <div className="mt-20 flex max-w-2xl flex-col gap-y-4">
         {initialChores.map((chore) => (
-          <div key={chore.id} className="rounded border border-slate-100 p-4">
+          <div
+            key={chore.id}
+            className="animate-fade-in-from-top rounded border border-slate-100 p-4"
+          >
             <p
               className={clsx('flex items-end gap-x-1', {
                 'text-blue-500': chore.status === 'DONE',
