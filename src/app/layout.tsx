@@ -42,14 +42,14 @@ export default function RootLayout({
                 'flex gap-x-1 text-xl font-bold')
               }
             >
-              <span className="text-blue-500">
+              <span className="text-ring">
                 <LucideBrushCleaning />
               </span>
               Chorely
             </Link>
             <Link
               href={choresPath()}
-              className={buttonVariants({ variant: 'secondary' })}
+              className={buttonVariants({ variant: 'default' })}
             >
               Chores
             </Link>

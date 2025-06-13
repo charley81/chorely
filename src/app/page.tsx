@@ -9,7 +9,7 @@ export default function Home() {
       <p className="mt-2 text-base">
         We&apos;re just getting started, stay tuned, but for now checkout some
         chores{' '}
-        <span className="text-blue-600 underline">
+        <span className="text-ring">
           <Link href={choresPath()}>here</Link>
         </span>
       </p>
