@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react';
 import Link from 'next/link';
 
+import { Heading } from '@/components/heading';
 import {
   Card,
   CardContent,
@@ -30,7 +31,7 @@ const CHORE_ICONS = {
 export default function ChoresPage() {
   return (
     <div>
-      <h1 className="text-4xl font-bold">Chores Page</h1>
+      <Heading title="Chores Page" description="A list of all your chores" />
       <div className="mt-20 flex max-w-2xl flex-col gap-y-4">
         {initialChores.map((chore) => (
           <Card key={chore.id} className="animate-fade-in-from-top">
