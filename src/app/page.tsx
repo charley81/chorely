@@ -1,3 +1,12 @@
+import { Heading } from '@/components/heading';
+
 export default function Home() {
-  return <h1 className="text-center text-6xl mt-8">start here</h1>;
+  return (
+    <div className="mx-auto w-full max-w-3xl">
+      <Heading
+        title="Welcome to Chorely"
+        description="We're just getting started, stay tuned, but for now checkout some chores"
+      />
+    </div>
+  );
 }
