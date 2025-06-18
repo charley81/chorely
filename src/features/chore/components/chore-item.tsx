@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { LucidePencil, LucideSquareArrowOutUpRight } from 'lucide-react';
+import { LucideSquareArrowOutUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { chorePath, editChorePath } from '@/path';
+import { chorePath } from '@/path';
 
 import { CHORE_ICONS } from '../constants';
 import { Chore } from '../types';
@@ -19,14 +19,6 @@ export function ChoreItem({ chore, isDetail = false }: ChoreItemProps) {
     <Button asChild variant="outline" size="icon">
       <Link href={chorePath(chore.id)} className="underline">
         <LucideSquareArrowOutUpRight className="h4 w-4" />
-      </Link>
-    </Button>
-  );
-
-  const editButton = (
-    <Button asChild variant="outline" size="icon">
-      <Link href={editChorePath(chore.id)}>
-        <LucidePencil className="h-4 w-4" />
       </Link>
     </Button>
   );
@@ -60,12 +52,7 @@ export function ChoreItem({ chore, isDetail = false }: ChoreItemProps) {
           </p>
         </CardContent>
       </Card>
-      {!isDetail && (
-        <div className="flex flex-col gap-y-1">
-          {detailButton}
-          {editButton}
-        </div>
-      )}
+      {!isDetail && <div className="flex flex-col gap-y-1">{detailButton}</div>}
     </div>
   );
 }
