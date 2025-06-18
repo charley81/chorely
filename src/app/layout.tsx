@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import { NavHeader } from '@/components/nav-header';
+import ThemeProvider from '@/components/theme/theme-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,10 +31,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavHeader />
-        <main className="flex min-h-screen w-full flex-1 flex-col px-4">
-          {children}
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NavHeader />
+          <main className="flex min-h-screen w-full flex-1 flex-col px-4">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

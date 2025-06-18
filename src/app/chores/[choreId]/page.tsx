@@ -27,7 +27,6 @@ export default async function SingleChorePage({
             </Button>
           }
         />
-        <Placeholder message="Chore not found" />
       </div>
     );
   }
