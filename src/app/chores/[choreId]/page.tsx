@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Placeholder } from '@/components/placeholder';
 import { Button } from '@/components/ui/button';
 import { initialChores } from '@/data';
+import { ChoreItem } from '@/features/chore/components/chore-item';
 import { choresPath } from '@/path';
 
 type SingleChorePageProps = {
@@ -17,7 +18,7 @@ export default async function SingleChorePage({
 
   if (!chore) {
     return (
-      <div className="flex flex-1">
+      <div className="flex w-full flex-1 justify-center">
         <Placeholder
           message="Chore not found"
           button={
@@ -32,9 +33,8 @@ export default async function SingleChorePage({
   }
 
   return (
-    <div className="animate-fade-in-from-top mt-40">
-      <h2 className="text-2xl font-bold">{chore.title}</h2>
-      <p className="">{chore.conent}</p>
+    <div className="animate-fade-in-from-top mx-auto mt-40 w-full max-w-3xl">
+      <ChoreItem chore={chore} isDetail />
     </div>
   );
 }

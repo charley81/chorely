@@ -4,9 +4,9 @@ import { ChoreItem } from '@/features/chore/components/chore-item';
 
 export default function ChoresPage() {
   return (
-    <div>
+    <div className="mx-auto w-full max-w-3xl">
       <Heading title="Chores Page" description="A list of all your chores" />
-      <div className="mt-20 flex max-w-2xl flex-col gap-y-4">
+      <div className="mt-20 flex w-full flex-col items-center gap-y-4">
         {initialChores.map((chore) => (
           <ChoreItem key={chore.id} chore={chore} />
         ))}
