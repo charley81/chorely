@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { initialChores } from '@/data';
 import { chorePath } from '@/paths';
 
+const CHORE_STATUS = {
+  DONE: '✅',
+  OPEN: '🔓',
+  WORKING: '💪',
+};
+
 export default function ChoresPage() {
   return (
     <div>
@@ -11,7 +17,10 @@ export default function ChoresPage() {
       <div className="flex flex-col gap-y-4">
         {initialChores.map((chore) => (
           <div key={chore.id}>
-            <h3>{chore.title}</h3>
+            <div>
+              <h3>{chore.title}</h3>
+              <span>{CHORE_STATUS[chore.status]}</span>
+            </div>
             <Link href={chorePath(chore.id)} className="underline">
               View
             </Link>
