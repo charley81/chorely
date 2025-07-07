@@ -1,12 +1,13 @@
+import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react';
 import Link from 'next/link';
 
 import { initialChores } from '@/data';
 import { chorePath } from '@/paths';
 
 const CHORE_STATUS = {
-  DONE: '✅',
-  OPEN: '🔓',
-  WORKING: '💪',
+  DONE: <LucideCheck />,
+  OPEN: <LucideLockOpen />,
+  WORKING: <LucideBicepsFlexed />,
 };
 
 export default function ChoresPage() {
