@@ -1,10 +1,10 @@
 type ChorePageProps = {
   params: {
-    id: string;
+    choreId: string;
   };
 };
 
 export default async function ChorePage({ params }: ChorePageProps) {
-  const { id } = await params;
-  return <div>SingleChorePage for chore: {id}</div>;
+  const { choreId } = await params;
+  return <div>SingleChorePage for chore: {choreId}</div>;
 }
