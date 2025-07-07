@@ -12,8 +12,13 @@ const CHORE_STATUS = {
 
 export default function ChoresPage() {
   return (
-    <div>
-      <h1 className="mb-10 text-xl font-bold">Chores</h1>
+    <div className="flex flex-1 flex-col gap-y-8">
+      <div>
+        <h2 className="text-3xl font-bold tracking-tight">Chores Page</h2>
+        <p className="text-muted-foreground text-sm">
+          All your chores are here
+        </p>
+      </div>
 
       <div className="flex flex-col gap-y-4">
         {initialChores.map((chore) => (
