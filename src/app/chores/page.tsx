@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react';
 import Link from 'next/link';
 
@@ -20,13 +21,28 @@ export default function ChoresPage() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col items-center gap-y-8">
         {initialChores.map((chore) => (
-          <div key={chore.id}>
+          <div key={chore.id} className="w-full max-w-[420px]">
             <div>
-              <h3>{chore.title}</h3>
-              <span>{CHORE_STATUS[chore.status]}</span>
+              <h3 className="truncate">{chore.title}</h3>
+              <span
+                className={clsx('', {
+                  'text-green-500': chore.status === 'DONE',
+                  'text-red-500': chore.status === 'OPEN',
+                  'text-blue-500': chore.status === 'WORKING',
+                })}
+              >
+                {CHORE_STATUS[chore.status]}
+              </span>
             </div>
+            <p
+              className={clsx('truncate', {
+                'line-through': chore.status === 'DONE',
+              })}
+            >
+              {chore.content}
+            </p>
             <Link href={chorePath(chore.id)} className="underline">
               View
             </Link>
