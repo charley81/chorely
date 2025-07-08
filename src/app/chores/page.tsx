@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react';
 import Link from 'next/link';
 
-import { Header } from '@/components/header';
+import { Heading } from '@/components/heading';
 import {
   Card,
   CardContent,
@@ -23,7 +23,7 @@ const CHORE_STATUS = {
 export default function ChoresPage() {
   return (
     <div className="flex flex-1 flex-col gap-y-8">
-      <Header title="Chores Page" description="All your chores here" />
+      <Heading title="Chores Page" description="All your chores here" />
 
       <div className="animate-fade-in-from-top flex flex-col items-center gap-y-8">
         {initialChores.map((chore) => (

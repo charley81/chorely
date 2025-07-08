@@ -1,4 +1,4 @@
-import { Header } from '@/components/header';
+import { Heading } from '@/components/heading';
 import { initialChores } from '@/data';
 
 type ChorePageProps = {
@@ -17,7 +17,7 @@ export default async function ChorePage({ params }: ChorePageProps) {
 
   return (
     <div className="flex flex-1 flex-col gap-y-8">
-      <Header
+      <Heading
         title="Chore Page"
         description={`You are viewing ${chore.title}`}
       />

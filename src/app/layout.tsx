@@ -1,12 +1,9 @@
 import './globals.css';
 
-import { LucideBrushCleaning } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import Link from 'next/link';
 
-import { buttonVariants } from '@/components/ui/button';
-import { choresPath, homePath } from '@/paths';
+import { Header } from '@/components/header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,29 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="supports-backdrop-blur:bg-background/60 bg-background/95 background-blur fixed top-0 right-0 left-0 z-20 flex w-full justify-between border-b px-5 py-2.5">
-          <div>
-            <Link
-              href={homePath()}
-              className={buttonVariants({ variant: 'ghost' })}
-            >
-              <h3 className="flex items-center gap-x-1 text-lg font-bold">
-                Chorely
-                <span>
-                  <LucideBrushCleaning />
-                </span>
-              </h3>
-            </Link>
-          </div>
-          <div>
-            <Link
-              href={choresPath()}
-              className={buttonVariants({ variant: 'default' })}
-            >
-              Chores
-            </Link>
-          </div>
-        </nav>
+        <Header />
         <main className="bg-secondary/20 flex min-h-screen flex-col overflow-x-hidden overflow-y-auto px-8 py-24">
           {children}
         </main>
