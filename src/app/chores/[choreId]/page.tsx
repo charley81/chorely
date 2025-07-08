@@ -1,6 +1,10 @@
-import { Heading } from '@/components/heading';
-import { initialChores } from '@/data';
+import Link from 'next/link';
 
+import { Heading } from '@/components/heading';
+import { Placeholer } from '@/components/placeholder';
+import { Button } from '@/components/ui/button';
+import { initialChores } from '@/data';
+import { choresPath } from '@/paths';
 type ChorePageProps = {
   params: {
     choreId: string;
@@ -12,7 +16,19 @@ export default async function ChorePage({ params }: ChorePageProps) {
   const chore = initialChores.find((chore) => chore.id === choreId);
 
   if (!chore) {
-    return <div>Chore not found</div>;
+    return (
+      <div className="flex flex-1">
+        <Placeholer
+          label="Chore not found"
+          button={
+            <Button asChild variant="outline">
+              <Link href={choresPath()}>Back to chores</Link>
+            </Button>
+          }
+        />
+        <Placeholer label="Chore not found" />
+      </div>
+    );
   }
 
   return (
