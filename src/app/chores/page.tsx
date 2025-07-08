@@ -3,6 +3,14 @@ import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react';
 import Link from 'next/link';
 
 import { Header } from '@/components/header';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { initialChores } from '@/data';
 import { chorePath } from '@/paths';
 
@@ -19,9 +27,9 @@ export default function ChoresPage() {
 
       <div className="animate-fade-in-from-top flex flex-col items-center gap-y-8">
         {initialChores.map((chore) => (
-          <div key={chore.id} className="w-full max-w-[420px]">
-            <div>
-              <h3 className="truncate">{chore.title}</h3>
+          <Card key={chore.id} className="w-full max-w-[620px]">
+            <CardHeader className="flex gap-x-2">
+              <CardTitle className="truncate">{chore.title}</CardTitle>
               <span
                 className={clsx('', {
                   'text-green-500': chore.status === 'DONE',
@@ -31,18 +39,22 @@ export default function ChoresPage() {
               >
                 {CHORE_STATUS[chore.status]}
               </span>
-            </div>
-            <p
-              className={clsx('truncate', {
-                'line-through': chore.status === 'DONE',
-              })}
-            >
-              {chore.content}
-            </p>
-            <Link href={chorePath(chore.id)} className="underline">
-              View
-            </Link>
-          </div>
+            </CardHeader>
+            <CardContent>
+              <CardDescription
+                className={clsx('truncate', {
+                  'line-through': chore.status === 'DONE',
+                })}
+              >
+                {chore.content}
+              </CardDescription>
+            </CardContent>
+            <CardFooter>
+              <Link href={chorePath(chore.id)} className="underline">
+                View
+              </Link>
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </div>
