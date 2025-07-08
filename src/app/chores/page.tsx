@@ -30,15 +30,7 @@ export default function ChoresPage() {
           <Card key={chore.id} className="w-full max-w-[620px]">
             <CardHeader className="flex gap-x-2">
               <CardTitle className="truncate">{chore.title}</CardTitle>
-              <span
-                className={clsx('', {
-                  'text-green-500': chore.status === 'DONE',
-                  'text-red-500': chore.status === 'OPEN',
-                  'text-blue-500': chore.status === 'WORKING',
-                })}
-              >
-                {CHORE_STATUS[chore.status]}
-              </span>
+              <span>{CHORE_STATUS[chore.status]}</span>
             </CardHeader>
             <CardContent>
               <CardDescription

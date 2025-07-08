@@ -50,7 +50,7 @@ export default function RootLayout({
           <div>
             <Link
               href={choresPath()}
-              className={buttonVariants({ variant: 'outline' })}
+              className={buttonVariants({ variant: 'default' })}
             >
               Chores
             </Link>
