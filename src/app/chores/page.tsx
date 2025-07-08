@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react';
 import Link from 'next/link';
 
+import { Header } from '@/components/header';
 import { initialChores } from '@/data';
 import { chorePath } from '@/paths';
 
@@ -14,12 +15,7 @@ const CHORE_STATUS = {
 export default function ChoresPage() {
   return (
     <div className="flex flex-1 flex-col gap-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Chores Page</h2>
-        <p className="text-muted-foreground text-sm">
-          All your chores are here
-        </p>
-      </div>
+      <Header title="Chores Page" description="All your chores here" />
 
       <div className="animate-fade-in-from-top flex flex-col items-center gap-y-8">
         {initialChores.map((chore) => (

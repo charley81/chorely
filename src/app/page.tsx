@@ -1,11 +1,11 @@
+import { Header } from '@/components/header';
+
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col gap-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Home Page</h2>
-        <p className="text-muted-foreground text-sm">Your home page</p>
-      </div>
-      <h1>Start here</h1>
+      <Header title="Home Page" description="Your home page" />
+
+      <h1>Welcome to Chorely</h1>
     </div>
   );
 }
