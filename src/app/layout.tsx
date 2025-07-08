@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { LucideBrushCleaning } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
@@ -38,7 +39,12 @@ export default function RootLayout({
               href={homePath()}
               className={buttonVariants({ variant: 'ghost' })}
             >
-              Chorely
+              <h3 className="flex items-center gap-x-1 text-lg font-bold">
+                Chorely
+                <span>
+                  <LucideBrushCleaning />
+                </span>
+              </h3>
             </Link>
           </div>
           <div>
