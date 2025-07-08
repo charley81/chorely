@@ -21,7 +21,7 @@ export default function ChoresPage() {
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-y-8">
+      <div className="animate-fade-in-from-top flex flex-col items-center gap-y-8">
         {initialChores.map((chore) => (
           <div key={chore.id} className="w-full max-w-[420px]">
             <div>
