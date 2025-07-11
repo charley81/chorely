@@ -9,7 +9,7 @@ export default function ChoresPage() {
 
       <div className="animate-fade-in-from-top flex flex-col items-center gap-y-8">
         {initialChores.map((chore) => (
-          <ChoreItem key={chore.id} chore={chore} />
+          <ChoreItem key={chore.id} chore={chore} isDetail />
         ))}
       </div>
     </div>

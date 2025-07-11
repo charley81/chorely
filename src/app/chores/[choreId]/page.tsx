@@ -4,7 +4,9 @@ import { Heading } from '@/components/heading';
 import { Placeholer } from '@/components/placeholder';
 import { Button } from '@/components/ui/button';
 import { initialChores } from '@/data';
+import { ChoreItem } from '@/features/chores/components/chore-item';
 import { choresPath } from '@/paths';
+
 type ChorePageProps = {
   params: {
     choreId: string;
@@ -26,20 +28,13 @@ export default async function ChorePage({ params }: ChorePageProps) {
             </Button>
           }
         />
-        <Placeholer label="Chore not found" />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-y-8">
-      <Heading
-        title="Chore Page"
-        description={`You are viewing ${chore.title}`}
-      />
-
-      <h3>{chore.title}</h3>
-      <p>{chore.content}</p>
+    <div className="--animate-fade-in-from-top flex justify-center">
+      <ChoreItem chore={chore} />
     </div>
   );
 }

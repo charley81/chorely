@@ -17,9 +17,10 @@ import { Chore } from '../types';
 
 type ChoreItemProps = {
   chore: Chore;
+  isDetail?: boolean;
 };
 
-export function ChoreItem({ chore }: ChoreItemProps) {
+export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   const detailButton = (
     <Button asChild size="icon" variant="outline">
       <Link href={chorePath(chore.id)}>
@@ -46,11 +47,7 @@ export function ChoreItem({ chore }: ChoreItemProps) {
         </CardContent>
         <CardFooter></CardFooter>
       </Card>
-      <div className="flex flex-col gap-y-1">
-        {detailButton}
-        {detailButton}
-        {detailButton}
-      </div>
+      {isDetail && <div className="flex flex-col gap-y-1">{detailButton}</div>}
     </div>
   );
 }
