@@ -30,22 +30,41 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   );
 
   return (
-    <div className="flex w-full max-w-[620px] flex-1 gap-x-1">
+    <div
+      className={clsx('flex w-full flex-1 gap-x-1', {
+        'max-w-[620px]': !isDetail,
+        'max-w-[420px]': isDetail,
+      })}
+    >
       <Card key={chore.id} className="w-full">
         <CardHeader className="flex gap-x-2">
           <CardTitle className="truncate">{chore.title}</CardTitle>
           <span>{chore.status}</span>
         </CardHeader>
         <CardContent>
-          <CardDescription
-            className={clsx('truncate', {
+          <span
+            className={clsx('truncate whitespace-break-spaces', {
               'line-through': chore.status === 'DONE',
+              'line-clamp-3': isDetail,
             })}
           >
-            {chore.content}
-          </CardDescription>
+            {chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content +
+              chore.content}
+          </span>
         </CardContent>
-        <CardFooter></CardFooter>
       </Card>
       {isDetail && <div className="flex flex-col gap-y-1">{detailButton}</div>}
     </div>
