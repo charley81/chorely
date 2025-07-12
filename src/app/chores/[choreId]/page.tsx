@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-import { Heading } from '@/components/heading';
 import { Placeholer } from '@/components/placeholder';
 import { Button } from '@/components/ui/button';
 import { initialChores } from '@/data';
