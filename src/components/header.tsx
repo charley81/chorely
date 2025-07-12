@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { choresPath, homePath } from '@/paths';
 
-import { ModeToggle } from './mode-toggle';
+import { ModeToggle } from './theme/mode-toggle';
 import { buttonVariants } from './ui/button';
 
 export function Header() {
