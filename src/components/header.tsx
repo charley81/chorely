@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { choresPath, homePath } from '@/paths';
 
+import { ModeToggle } from './mode-toggle';
 import { buttonVariants } from './ui/button';
 
 export function Header() {
@@ -21,13 +22,14 @@ export function Header() {
           </h3>
         </Link>
       </div>
-      <div>
+      <div className="flex items-center gap-x-2">
         <Link
           href={choresPath()}
           className={buttonVariants({ variant: 'default' })}
         >
           Chores
         </Link>
+        <ModeToggle />
       </div>
     </nav>
   );
