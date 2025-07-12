@@ -7,9 +7,7 @@ import { ChoreItem } from '@/features/chores/components/chore-item';
 import { choresPath } from '@/paths';
 
 type ChorePageProps = {
-  params: {
-    choreId: string;
-  };
+  params: Promise<{ choreId: string }>;
 };
 
 export default async function ChorePage({ params }: ChorePageProps) {
