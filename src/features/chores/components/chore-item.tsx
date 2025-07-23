@@ -1,3 +1,4 @@
+'use client';
 import clsx from 'clsx';
 import { LucideExternalLink, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
@@ -5,9 +6,9 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Chore } from '@/generated/prisma/client';
-import prisma from '@/lib/prisma';
 import { chorePath } from '@/paths';
 
+import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
 
 type ChoreItemProps = {
@@ -25,10 +26,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   );
 
   const handleDeleteChore = async () => {
-    'use server';
-    await prisma.chore.delete({
-      where: { id: chore.id },
-    });
+    await deleteChore(chore.id);
   };
 
   const deleteButton = (
