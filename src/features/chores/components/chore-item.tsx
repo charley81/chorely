@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { LucideExternalLink } from 'lucide-react';
+import { LucideExternalLink, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -23,11 +23,17 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </Button>
   );
 
+  const deleteButton = (
+    <Button size="icon" variant="outline">
+      <LucideTrash />
+    </Button>
+  );
+
   return (
     <div
       className={clsx('flex w-full flex-1 gap-x-1', {
-        'max-w-[620px]': !isDetail,
-        'max-w-[420px]': isDetail,
+        'max-w-[420px]': !isDetail,
+        'max-w-[620px]': isDetail,
       })}
     >
       <Card key={chore.id} className="w-full">
@@ -46,7 +52,10 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
           </span>
         </CardContent>
       </Card>
-      {isDetail && <div className="flex flex-col gap-y-1">{detailButton}</div>}
+
+      <div className="flex flex-col gap-y-1">
+        {isDetail ? deleteButton : detailButton}
+      </div>
     </div>
   );
 }
