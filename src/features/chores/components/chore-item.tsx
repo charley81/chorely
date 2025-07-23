@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Chore } from '@/generated/prisma/client';
 import { chorePath } from '@/paths';
 
-import { Chore } from '../types';
+import { CHORE_ICONS } from '../constants';
 
 type ChoreItemProps = {
   chore: Chore;
@@ -32,7 +33,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
       <Card key={chore.id} className="w-full">
         <CardHeader className="flex gap-x-2">
           <CardTitle className="truncate">{chore.title}</CardTitle>
-          <span>{chore.status}</span>
+          <span>{CHORE_ICONS[chore.status]}</span>
         </CardHeader>
         <CardContent>
           <span

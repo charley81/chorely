@@ -1,11 +1,9 @@
-import { initialChores } from '@/data';
+import prisma from '@/lib/prisma';
 
-import { Chore } from '../types';
-
-export const getChores = async (): Promise<Chore[]> => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  return new Promise((resolve) => {
-    resolve(initialChores);
+export const getChores = async () => {
+  return await prisma.chore.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 };
