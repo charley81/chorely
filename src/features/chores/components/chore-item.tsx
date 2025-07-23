@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Chore } from '@/generated/prisma/client';
+import prisma from '@/lib/prisma';
 import { chorePath } from '@/paths';
 
 import { CHORE_ICONS } from '../constants';
@@ -23,8 +24,15 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </Button>
   );
 
+  const handleDeleteChore = async () => {
+    'use server';
+    await prisma.chore.delete({
+      where: { id: chore.id },
+    });
+  };
+
   const deleteButton = (
-    <Button size="icon" variant="outline">
+    <Button size="icon" variant="outline" onClick={handleDeleteChore}>
       <LucideTrash />
     </Button>
   );
