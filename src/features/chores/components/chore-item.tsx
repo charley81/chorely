@@ -41,21 +41,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
               'line-clamp-3': isDetail,
             })}
           >
-            {chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content +
-              chore.content}
+            {chore.content}
           </span>
         </CardContent>
       </Card>
