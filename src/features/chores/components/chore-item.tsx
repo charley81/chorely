@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Chore } from '@/generated/prisma';
 import { chorePath } from '@/paths';
 
 import { CHORE_ICONS } from '../constants';
-import { Chore } from '../types';
 
 type ChoreItemProps = {
   chore: Chore;
