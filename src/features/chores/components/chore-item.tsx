@@ -18,7 +18,7 @@ type ChoreItemProps = {
 export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   const detailButton = (
     <Button asChild size="icon" variant="outline">
-      <Link href={chorePath(chore.id)}>
+      <Link prefetch href={chorePath(chore.id)}>
         <LucideExternalLink />
       </Link>
     </Button>
