@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { chorePath } from '@/paths';
 
+import { CHORE_ICONS } from '../constants';
 import { Chore } from '../types';
 
 type ChoreItemProps = {
@@ -32,7 +33,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
       <Card key={chore.id} className="w-full">
         <CardHeader className="flex gap-x-2">
           <CardTitle className="truncate">{chore.title}</CardTitle>
-          <span>{chore.status}</span>
+          <span>{CHORE_ICONS[chore.status]}</span>
         </CardHeader>
         <CardContent>
           <span

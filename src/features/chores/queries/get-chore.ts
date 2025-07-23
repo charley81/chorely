@@ -1,10 +1,9 @@
-import { initialChores } from '@/data';
+import prisma from '@/lib/prisma';
 
-import { Chore } from '../types';
-
-export const getChore = async (choreId: string): Promise<Chore | null> => {
-  const maybeChore = initialChores.find((chore) => chore.id === choreId);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  return new Promise((resolve) => resolve(maybeChore || null));
+export const getChore = async (id: string) => {
+  return await prisma.chore.findUnique({
+    where: {
+      id,
+    },
+  });
 };
