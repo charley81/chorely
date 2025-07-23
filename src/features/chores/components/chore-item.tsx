@@ -1,4 +1,3 @@
-'use client';
 import clsx from 'clsx';
 import { LucideExternalLink, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
@@ -25,14 +24,12 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </Button>
   );
 
-  const handleDeleteChore = async () => {
-    await deleteChore(chore.id);
-  };
-
   const deleteButton = (
-    <Button size="icon" variant="outline" onClick={handleDeleteChore}>
-      <LucideTrash />
-    </Button>
+    <form action={deleteChore.bind(null, chore.id)}>
+      <Button size="icon" variant="outline">
+        <LucideTrash />
+      </Button>
+    </form>
   );
 
   return (
