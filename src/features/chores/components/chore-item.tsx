@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { LucideExternalLink, LucideTrash } from 'lucide-react';
+import { LucideExternalLink, LucidePencil, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Chore } from '@/generated/prisma/client';
-import { chorePath } from '@/paths';
+import { choreEditPath, chorePath } from '@/paths';
 
 import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
@@ -16,10 +16,18 @@ type ChoreItemProps = {
 };
 
 export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const editButton = (
+    <Button asChild size="icon" variant="outline">
+      <Link href={choreEditPath(chore.id)}>
+        <LucidePencil className="h-4 w-4" />
+      </Link>
+    </Button>
+  );
+
   const detailButton = (
     <Button asChild size="icon" variant="outline">
       <Link prefetch href={chorePath(chore.id)}>
-        <LucideExternalLink />
+        <LucideExternalLink className="h-4 w-4" />
       </Link>
     </Button>
   );
@@ -27,7 +35,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   const deleteButton = (
     <form action={deleteChore.bind(null, chore.id)}>
       <Button size="icon" variant="outline">
-        <LucideTrash />
+        <LucideTrash className="h-4 w-4" />
       </Button>
     </form>
   );
@@ -57,7 +65,17 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
       </Card>
 
       <div className="flex flex-col gap-y-1">
-        {isDetail ? deleteButton : detailButton}
+        {isDetail ? (
+          <>
+            {editButton}
+            {deleteButton}
+          </>
+        ) : (
+          <>
+            {detailButton}
+            {editButton}
+          </>
+        )}
       </div>
     </div>
   );
