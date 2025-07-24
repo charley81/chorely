@@ -1,4 +1,6 @@
-import { Button } from '@/components/ui/button';
+'use client';
+
+import { SubmitButton } from '@/components/form/submit-button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,8 +23,7 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
 
       <Label>Conent</Label>
       <Textarea id="content" name="content" defaultValue={chore?.content} />
-
-      <Button type="submit">{chore ? 'Edit' : 'Create'}</Button>
+      {<SubmitButton label={chore ? 'Edit' : 'Create'} />}
     </form>
   );
 }
