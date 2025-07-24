@@ -3,6 +3,7 @@
 import { useActionState } from 'react';
 
 import { SubmitButton } from '@/components/form/submit-button';
+import { ActionState } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,10 +16,12 @@ type ChoreUpsertFormProps = {
 };
 
 export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
-  const [actionState, action] = useActionState(
+  const [actionState, action] = useActionState<ActionState, FormData>(
     upsertChore.bind(null, chore?.id),
     {
       message: '',
+      fieldErrors: {},
+      payload: undefined,
     },
   );
   return (

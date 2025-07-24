@@ -5,13 +5,14 @@ import { ChoreUpsertForm } from '@/features/chores/components/chore-upsert-form'
 import { getChore } from '@/features/chores/queries/get-chore';
 
 type ChoreEditPageProps = {
-  params: {
+  params: Promise<{
     choreId: string;
-  };
+  }>;
 };
 
 export default async function ChoreEditPage({ params }: ChoreEditPageProps) {
-  const chore = await getChore(params.choreId);
+  const { choreId } = await params;
+  const chore = await getChore(choreId);
 
   if (!chore) {
     notFound();

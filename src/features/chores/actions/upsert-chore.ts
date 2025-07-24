@@ -3,19 +3,29 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import * as z from 'zod';
 
+import {
+  ActionState,
+  fromErrorToActionState,
+} from '@/components/form/utils/to-action-state';
 import prisma from '@/lib/prisma';
 import { chorePath, choresPath } from '@/paths';
 
 const upsertChoreScema = z.object({
-  title: z.string().min(1).max(191),
-  content: z.string().min(1).max(1024),
+  title: z
+    .string()
+    .min(1, { message: 'Title must contain at least one character' })
+    .max(191, { message: 'Title max 191 chars' }),
+  content: z
+    .string()
+    .min(1, { message: 'Content must contain at least one character' })
+    .max(1024, { message: 'Content max 1024 chars' }),
 });
 
 export const upsertChore = async (
   id: string | undefined,
-  _actionState: { message: string },
+  _actionState: ActionState,
   formData: FormData,
-) => {
+): Promise<ActionState> => {
   try {
     const data = upsertChoreScema.parse({
       title: formData.get('title') as string,
@@ -30,8 +40,7 @@ export const upsertChore = async (
       create: data,
     });
   } catch (error) {
-    console.log(error);
-    return { message: 'Something went wrong', payload: formData };
+    return fromErrorToActionState(error, formData);
   }
 
   revalidatePath(choresPath());
@@ -42,5 +51,7 @@ export const upsertChore = async (
 
   return {
     message: 'Chore Created',
+    fieldErrors: {},
+    payload: formData, // Include payload even on success
   };
 };
