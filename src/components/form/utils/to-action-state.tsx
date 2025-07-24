@@ -8,7 +8,6 @@ export type ActionState = {
 
 export const fromErrorToActionState = (error: unknown, formData: FormData) => {
   if (error instanceof ZodError) {
-    console.log(transformZodIssuesToFieldErrors(error.issues));
     return {
       message: '',
       fieldErrors: transformZodIssuesToFieldErrors(error.issues),

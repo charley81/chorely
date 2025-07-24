@@ -52,6 +52,6 @@ export const upsertChore = async (
   return {
     message: 'Chore Created',
     fieldErrors: {},
-    payload: formData, // Include payload even on success
+    payload: formData,
   };
 };

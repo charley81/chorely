@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react';
 
+import { FieldError } from '@/components/form/field-error';
 import { SubmitButton } from '@/components/form/submit-button';
 import { ActionState } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
@@ -35,6 +36,7 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
           (actionState.payload?.get('title') as string) ?? chore?.title
         }
       />
+      <FieldError actionState={actionState} name="title" />
 
       <Label>Conent</Label>
       <Textarea
@@ -44,6 +46,8 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
           (actionState.payload?.get('content') as string) ?? chore?.content
         }
       />
+      <FieldError actionState={actionState} name="content" />
+
       {<SubmitButton label={chore ? 'Edit' : 'Create'} />}
       {actionState.message}
     </form>
