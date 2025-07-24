@@ -24,10 +24,23 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
   return (
     <form action={action} className="flex flex-col gap-y-2">
       <Label htmlFor="title">Title</Label>
-      <Input id="title" name="title" type="text" defaultValue={chore?.title} />
+      <Input
+        id="title"
+        name="title"
+        type="text"
+        defaultValue={
+          (actionState.payload?.get('title') as string) ?? chore?.title
+        }
+      />
 
       <Label>Conent</Label>
-      <Textarea id="content" name="content" defaultValue={chore?.content} />
+      <Textarea
+        id="content"
+        name="content"
+        defaultValue={
+          (actionState.payload?.get('content') as string) ?? chore?.content
+        }
+      />
       {<SubmitButton label={chore ? 'Edit' : 'Create'} />}
       {actionState.message}
     </form>

@@ -31,7 +31,7 @@ export const upsertChore = async (
     });
   } catch (error) {
     console.log(error);
-    return { message: 'Something went wrong' };
+    return { message: 'Something went wrong', payload: formData };
   }
 
   revalidatePath(choresPath());
