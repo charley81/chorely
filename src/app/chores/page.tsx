@@ -3,8 +3,8 @@ import { Suspense } from 'react';
 import { CardCompact } from '@/components/card-compact';
 import { Heading } from '@/components/heading';
 import { Spinner } from '@/components/spinner';
-import { ChoreCreateForm } from '@/features/chores/components/chore-create-form';
 import { ChoreList } from '@/features/chores/components/chore-list';
+import { ChoreUpsertForm } from '@/features/chores/components/chore-upsert-form';
 
 export default function ChoresPage() {
   return (
@@ -14,7 +14,7 @@ export default function ChoresPage() {
       <CardCompact
         title="Create Chore"
         description="A new chore will be created"
-        content={<ChoreCreateForm />}
+        content={<ChoreUpsertForm />}
         className="w-full max-w-[420px] self-center"
       />
 

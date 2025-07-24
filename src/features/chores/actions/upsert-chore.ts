@@ -3,24 +3,28 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import prisma from '@/lib/prisma';
-import { choresPath } from '@/paths';
+import { chorePath, choresPath } from '@/paths';
 
-export const updateChore = async (id: string, formData: FormData) => {
+export const upsertChore = async (
+  id: string | undefined,
+  formData: FormData,
+) => {
   const data = {
     title: formData.get('title') as string,
     content: formData.get('content') as string,
   };
 
-  await prisma.chore.update({
+  await prisma.chore.upsert({
     where: {
-      id: id as string,
+      id: id || '',
     },
-    data: {
-      title: data.title as string,
-      content: data.content as string,
-    },
+    update: data,
+    create: data,
   });
 
   revalidatePath(choresPath());
-  redirect(choresPath());
+
+  if (id) {
+    redirect(chorePath(id));
+  }
 };
