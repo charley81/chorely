@@ -7,6 +7,7 @@ import { chorePath, choresPath } from '@/paths';
 
 export const upsertChore = async (
   id: string | undefined,
+  _actionState: { message: string },
   formData: FormData,
 ) => {
   const data = {
@@ -27,4 +28,8 @@ export const upsertChore = async (
   if (id) {
     redirect(chorePath(id));
   }
+
+  return {
+    message: 'Chore Created',
+  };
 };
