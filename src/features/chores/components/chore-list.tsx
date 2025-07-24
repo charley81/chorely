@@ -7,7 +7,7 @@ export async function ChoreList() {
   return (
     <div className="animate-fade-in-from-top flex flex-col items-center gap-y-8">
       {chores.map((chore) => (
-        <ChoreItem key={chore.id} chore={chore} isDetail />
+        <ChoreItem key={chore.id} chore={chore} isDetail={false} />
       ))}
     </div>
   );
