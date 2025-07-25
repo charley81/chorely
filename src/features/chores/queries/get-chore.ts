@@ -4,7 +4,7 @@ export const getChore = async (id: string) => {
   try {
     return await prisma.chore.findUnique({
       where: {
-        id,
+        id: id.trim(),
       },
     });
   } catch (error) {
