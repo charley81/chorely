@@ -13,6 +13,7 @@ type ChoreEditPageProps = {
 export default async function ChoreEditPage({ params }: ChoreEditPageProps) {
   const { choreId } = await params;
   const chore = await getChore(choreId);
+  console.log(chore);
 
   if (!chore) {
     notFound();

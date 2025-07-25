@@ -13,6 +13,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
+    ignorePatterns: ['**/generated/prisma/**', 'node_modules', '.next'],
     plugins: {
       'simple-import-sort': simpleImportSort,
     },
