@@ -11,9 +11,13 @@ export const dynamic = 'force-dynamic';
 
 export default async function ChorePage({ params }: ChorePageProps) {
   const { choreId } = await params;
+  console.log('Production choreId: ', choreId);
+
   const chore = await getChore(choreId);
+  console.log('fetched chore: ', chore);
 
   if (!chore) {
+    console.log('chore not found for ID: ', choreId);
     notFound();
   }
 
