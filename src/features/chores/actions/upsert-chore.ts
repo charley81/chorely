@@ -38,7 +38,7 @@ export const upsertChore = async (
         id: id || '',
       },
       update: data,
-      create: null,
+      create: data,
     });
   } catch (error) {
     return fromErrorToActionState(error, formData);
