@@ -4,7 +4,10 @@ import { useActionState } from 'react';
 
 import { FieldError } from '@/components/form/field-error';
 import { SubmitButton } from '@/components/form/submit-button';
-import { ActionState } from '@/components/form/utils/to-action-state';
+import {
+  ActionState,
+  EMPTY_ACTION_STATE,
+} from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -19,11 +22,7 @@ type ChoreUpsertFormProps = {
 export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
   const [actionState, action] = useActionState<ActionState, FormData>(
     upsertChore.bind(null, chore?.id),
-    {
-      message: '',
-      fieldErrors: {},
-      payload: undefined,
-    },
+    EMPTY_ACTION_STATE,
   );
   return (
     <form action={action} className="flex flex-col gap-y-2">

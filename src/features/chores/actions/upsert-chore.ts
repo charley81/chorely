@@ -6,6 +6,7 @@ import * as z from 'zod';
 import {
   ActionState,
   fromErrorToActionState,
+  toActionState,
 } from '@/components/form/utils/to-action-state';
 import prisma from '@/lib/prisma';
 import { chorePath, choresPath } from '@/paths';
@@ -49,9 +50,5 @@ export const upsertChore = async (
     redirect(chorePath(id));
   }
 
-  return {
-    message: 'Chore Created',
-    fieldErrors: {},
-    payload: formData,
-  };
+  return toActionState('SUCCESS', 'Chore Created');
 };
