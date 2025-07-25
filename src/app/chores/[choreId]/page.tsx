@@ -7,6 +7,8 @@ type ChorePageProps = {
   params: Promise<{ choreId: string }>;
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ChorePage({ params }: ChorePageProps) {
   const { choreId } = await params;
   const chore = await getChore(choreId);
