@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
+import { toast } from 'sonner';
 
 import { FieldError } from '@/components/form/field-error';
 import { useActionFeedback } from '@/components/form/hooks/use-action-feedback';
@@ -28,10 +29,14 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
 
   useActionFeedback(actionState, {
     onSuccess: ({ actionState }) => {
-      console.log(actionState.message);
+      if (actionState.message) {
+        toast.success(actionState.message);
+      }
     },
     onError: ({ actionState }) => {
-      console.log(actionState.message);
+      if (actionState.message) {
+        toast.error(actionState.message);
+      }
     },
   });
 

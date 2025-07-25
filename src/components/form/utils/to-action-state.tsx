@@ -18,7 +18,7 @@ export const fromErrorToActionState = (error: unknown, formData: FormData) => {
   if (error instanceof ZodError) {
     return {
       status: 'ERROR' as const,
-      message: '',
+      message: formatZodErrorMessage(error),
       fieldErrors: transformZodIssuesToFieldErrors(error.issues),
       payload: formData,
       timestamp: Date.now(),
@@ -48,6 +48,10 @@ export const toActionState = (
 ): ActionState => {
   return { status, message, fieldErrors: {}, timestamp: Date.now() };
 };
+
+function formatZodErrorMessage(error: ZodError): string {
+  return error.issues[0]?.message || 'Form validation failed';
+}
 
 function transformZodIssuesToFieldErrors(
   issues: ZodError['issues'],
