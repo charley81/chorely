@@ -3,7 +3,13 @@ import { LucideExternalLink, LucidePencil, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Chore } from '@/generated/prisma/client';
 import { choreEditPath, chorePath } from '@/paths';
 
@@ -62,6 +68,8 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
             {chore.content}
           </span>
         </CardContent>
+        <CardFooter>{chore.deadline}</CardFooter>
+        <CardFooter>{chore.bounty}</CardFooter>
       </Card>
 
       <div className="flex flex-col gap-y-1">
