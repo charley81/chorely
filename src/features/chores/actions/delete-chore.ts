@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 import prisma from '@/lib/prisma';
 import { choresPath } from '@/paths';
+import { setCookieByKey } from '@/actions/cookies';
 
 export const deleteChore = async (id: string) => {
   await prisma.chore.delete({
@@ -12,5 +13,6 @@ export const deleteChore = async (id: string) => {
   });
 
   revalidatePath(choresPath());
+  await setCookieByKey('toast', 'Chore deleted');
   redirect(choresPath());
 };

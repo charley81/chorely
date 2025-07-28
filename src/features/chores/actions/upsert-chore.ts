@@ -10,6 +10,7 @@ import {
 } from '@/components/form/utils/to-action-state';
 import prisma from '@/lib/prisma';
 import { chorePath, choresPath } from '@/paths';
+import { setCookieByKey } from '@/actions/cookies';
 
 const upsertChoreScema = z.object({
   title: z
@@ -47,6 +48,7 @@ export const upsertChore = async (
   revalidatePath(choresPath());
 
   if (id) {
+    await setCookieByKey('toast', 'Chore Updated');
     redirect(chorePath(id));
   }
 
