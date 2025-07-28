@@ -15,7 +15,7 @@ import { choreEditPath, chorePath } from '@/paths';
 
 import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
-
+import { toCurrencyFromCent } from '@/utils/currency';
 type ChoreItemProps = {
   chore: Chore;
   isDetail?: boolean;
@@ -68,8 +68,12 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
             {chore.content}
           </span>
         </CardContent>
-        <CardFooter>{chore.deadline}</CardFooter>
-        <CardFooter>{chore.bounty}</CardFooter>
+        <CardFooter className="flex justify-between">
+          <p className="text-muted-foreground text-sm">{chore.deadline}</p>
+          <p className="text-muted-foreground text-sm">
+            {toCurrencyFromCent(chore.bounty)}
+          </p>
+        </CardFooter>
       </Card>
 
       <div className="flex flex-col gap-y-1">

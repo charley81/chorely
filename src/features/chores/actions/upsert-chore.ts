@@ -11,6 +11,7 @@ import {
 import prisma from '@/lib/prisma';
 import { chorePath, choresPath } from '@/paths';
 import { setCookieByKey } from '@/actions/cookies';
+import { toCent } from '@/utils/currency';
 
 const upsertChoreScema = z.object({
   title: z
@@ -40,7 +41,7 @@ export const upsertChore = async (
 
     const dbData = {
       ...data,
-      bounty: data.bounty * 100,
+      bounty: toCent(data.bounty),
     };
 
     await prisma.chore.upsert({
