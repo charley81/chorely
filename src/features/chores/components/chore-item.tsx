@@ -1,5 +1,10 @@
 import clsx from 'clsx';
-import { LucideExternalLink, LucidePencil, LucideTrash } from 'lucide-react';
+import {
+  LucideExternalLink,
+  LucidePencil,
+  LucideTrash,
+  LucideEllipsisVertical,
+} from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -16,6 +21,7 @@ import { choreEditPath, chorePath } from '@/paths';
 import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
 import { toCurrencyFromCent } from '@/utils/currency';
+import { ChoreMoreMenu } from './chore-more-menu';
 type ChoreItemProps = {
   chore: Chore;
   isDetail?: boolean;
@@ -44,6 +50,17 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         <LucideTrash className="h-4 w-4" />
       </Button>
     </form>
+  );
+
+  const moreMenu = (
+    <ChoreMoreMenu
+      chore={chore}
+      trigger={
+        <Button size="icon" variant="outline">
+          <LucideEllipsisVertical />
+        </Button>
+      }
+    />
   );
 
   return (
@@ -81,6 +98,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
           <>
             {editButton}
             {deleteButton}
+            {moreMenu}
           </>
         ) : (
           <>

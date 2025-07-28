@@ -21,15 +21,19 @@ type ChoreUpsertFormProps = {
   chore?: Chore;
 };
 
+type ImperativeHandleFromDatePicker = {
+  reset: () => void;
+};
+
 export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
   const [actionState, action] = useActionState<ActionState, FormData>(
     upsertChore.bind(null, chore?.id),
     EMPTY_ACTION_STATE,
   );
 
-  const datePickerImperativeHandleRef = useRef<{
-    reset: () => void;
-  }>(null!);
+  const datePickerImperativeHandleRef = useRef<ImperativeHandleFromDatePicker>(
+    null!,
+  );
 
   const handleSuccess = () => {
     datePickerImperativeHandleRef.current?.reset();

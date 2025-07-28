@@ -5,3 +5,9 @@ export const CHORE_ICONS = {
   OPEN: <LucideLockOpen />,
   WORKING: <LucideBicepsFlexed />,
 };
+
+export const CHORE_STATUS_LABELS = {
+  DONE: 'Done',
+  OPEN: 'Open',
+  WORKING: 'Working',
+};
