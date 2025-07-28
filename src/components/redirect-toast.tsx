@@ -19,7 +19,7 @@ export function RedirectToast() {
       if (mounted) toast.success(message);
     };
 
-    const timer = setTimeout(showCookieToast, 100); // Small delay
+    const timer = setTimeout(showCookieToast, 100);
     return () => {
       mounted = false;
       clearTimeout(timer);

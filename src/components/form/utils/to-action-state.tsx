@@ -18,7 +18,7 @@ export const fromErrorToActionState = (error: unknown, formData: FormData) => {
   if (error instanceof ZodError) {
     return {
       status: 'ERROR' as const,
-      message: formatZodErrorMessage(error),
+      message: '',
       fieldErrors: transformZodIssuesToFieldErrors(error.issues),
       payload: formData,
       timestamp: Date.now(),
