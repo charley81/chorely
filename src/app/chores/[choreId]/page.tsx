@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 
 import { ChoreItem } from '@/features/chores/components/chore-item';
 import { getChore } from '@/features/chores/queries/get-chore';
-import { RedirectToast } from '@/components/redirect-toast';
 
 type ChorePageProps = {
   params: Promise<{ choreId: string }>;
@@ -22,8 +21,6 @@ export default async function ChorePage({ params }: ChorePageProps) {
       <div className="--animate-fade-in-from-top flex justify-center">
         <ChoreItem chore={chore} isDetail />
       </div>
-
-      <RedirectToast />
     </>
   );
 }

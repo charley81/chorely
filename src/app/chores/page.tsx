@@ -5,7 +5,6 @@ import { Heading } from '@/components/heading';
 import { Spinner } from '@/components/spinner';
 import { ChoreList } from '@/features/chores/components/chore-list';
 import { ChoreUpsertForm } from '@/features/chores/components/chore-upsert-form';
-import { RedirectToast } from '@/components/redirect-toast';
 
 export default function ChoresPage() {
   return (
@@ -24,8 +23,6 @@ export default function ChoresPage() {
           <ChoreList />
         </Suspense>
       </div>
-
-      <RedirectToast />
     </>
   );
 }

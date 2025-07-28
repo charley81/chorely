@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Chore } from '@/generated/prisma/client';
 
 import { upsertChore } from '../actions/upsert-chore';
+import { DatePicker } from '@/components/date-picker';
 
 type ChoreUpsertFormProps = {
   chore?: Chore;
@@ -39,7 +40,7 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
       />
       <FieldError actionState={actionState} name="title" />
 
-      <Label>Conent</Label>
+      <Label htmlFor="content">Conent</Label>
       <Textarea
         id="content"
         name="content"
@@ -48,6 +49,30 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
         }
       />
       <FieldError actionState={actionState} name="content" />
+
+      <div className="mb-1 flex gap-x-2">
+        <div className="w-1/2">
+          <Label htmlFor="deadline">Deadline</Label>
+          <DatePicker
+            id="deadline"
+            name="deadline"
+            defaultValue={
+              (actionState.payload?.get('deadline') as string) ??
+              chore?.deadline
+            }
+          />
+        </div>
+        <div className="w-1/2">
+          <Label htmlFor="bounty">Bounty</Label>
+          <Input
+            id="bounty"
+            name="bounty"
+            defaultValue={
+              (actionState.payload?.get('bounty') as string) ?? chore?.bounty
+            }
+          />
+        </div>
+      </div>
 
       {<SubmitButton label={chore ? 'Edit' : 'Create'} />}
     </Form>

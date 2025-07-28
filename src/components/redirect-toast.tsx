@@ -1,10 +1,13 @@
 'use client';
 
 import { deleteCookieByKey, getCookieByKey } from '@/actions/cookies';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 
 export function RedirectToast() {
+  const pathname = usePathname();
+
   useEffect(() => {
     let mounted = true;
 
@@ -21,6 +24,6 @@ export function RedirectToast() {
       mounted = false;
       clearTimeout(timer);
     };
-  }, []);
+  }, [pathname]);
   return null;
 }

@@ -3,13 +3,19 @@ import { LucideExternalLink, LucidePencil, LucideTrash } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Chore } from '@/generated/prisma/client';
 import { choreEditPath, chorePath } from '@/paths';
 
 import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
-
+import { toCurrencyFromCent } from '@/utils/currency';
 type ChoreItemProps = {
   chore: Chore;
   isDetail?: boolean;
@@ -62,6 +68,12 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
             {chore.content}
           </span>
         </CardContent>
+        <CardFooter className="flex justify-between">
+          <p className="text-muted-foreground text-sm">{chore.deadline}</p>
+          <p className="text-muted-foreground text-sm">
+            {toCurrencyFromCent(chore.bounty)}
+          </p>
+        </CardFooter>
       </Card>
 
       <div className="flex flex-col gap-y-1">
