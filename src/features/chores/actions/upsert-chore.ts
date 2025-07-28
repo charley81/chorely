@@ -48,7 +48,7 @@ export const upsertChore = async (
   revalidatePath(choresPath());
 
   if (id) {
-    setCookieByKey('toast', 'Chore Updated');
+    await setCookieByKey('toast', 'Chore Updated');
     redirect(chorePath(id));
   }
 

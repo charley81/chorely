@@ -13,6 +13,6 @@ export const deleteChore = async (id: string) => {
   });
 
   revalidatePath(choresPath());
-  setCookieByKey('toast', 'Chore deleted');
+  await setCookieByKey('toast', 'Chore deleted');
   redirect(choresPath());
 };
