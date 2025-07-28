@@ -21,6 +21,8 @@ const upsertChoreScema = z.object({
     .string()
     .min(1, { message: 'Content must contain at least one character' })
     .max(1024, { message: 'Content max 1024 chars' }),
+  deadline: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Is Required'),
+  bounty: z.coerce.number().positive(),
 });
 
 export const upsertChore = async (
@@ -32,14 +34,21 @@ export const upsertChore = async (
     const data = upsertChoreScema.parse({
       title: formData.get('title') as string,
       content: formData.get('content') as string,
+      deadline: formData.get('deadline'),
+      bounty: formData.get('bounty'),
     });
+
+    const dbData = {
+      ...data,
+      bounty: data.bounty * 100,
+    };
 
     await prisma.chore.upsert({
       where: {
         id: id || '',
       },
-      update: data,
-      create: data,
+      update: dbData,
+      create: dbData,
     });
   } catch (error) {
     return fromErrorToActionState(error, formData);
