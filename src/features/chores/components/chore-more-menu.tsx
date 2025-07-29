@@ -30,7 +30,13 @@ export function ChoreMoreMenu({ chore, trigger }: ChoreMoreMenuProps) {
   );
 
   const handleUpdateChoreStatus = async (value: string) => {
-    const result = await updateChoreStatus(chore.id, value as ChoreStatus);
+    const promise = updateChoreStatus(chore.id, value as ChoreStatus);
+
+    toast.promise(promise, {
+      loading: 'Updating status...',
+    });
+
+    const result = await promise;
 
     if (result.status === 'ERROR') {
       toast.error(result.message);

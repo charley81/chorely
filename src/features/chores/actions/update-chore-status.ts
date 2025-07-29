@@ -9,6 +9,7 @@ import { choresPath } from '@/paths';
 import { revalidatePath } from 'next/cache';
 
 export const updateChoreStatus = async (id: string, status: ChoreStatus) => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   try {
     await prisma.chore.update({
       where: {
