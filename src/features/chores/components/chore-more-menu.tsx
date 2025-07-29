@@ -15,6 +15,9 @@ import { LucideTrash } from 'lucide-react';
 import { CHORE_STATUS_LABELS } from '../constants';
 import { updateChoreStatus } from '../actions/update-chore-status';
 import { toast } from 'sonner';
+import { ConfirmDialog } from '@/components/confirm-dialog';
+import { Button } from '@/components/ui/button';
+import { deleteChore } from '../actions/delete-chore';
 
 type ChoreMoreMenuProps = {
   chore: Chore;
@@ -23,10 +26,15 @@ type ChoreMoreMenuProps = {
 
 export function ChoreMoreMenu({ chore, trigger }: ChoreMoreMenuProps) {
   const deleteButton = (
-    <DropdownMenuItem>
-      <LucideTrash className="mr-2 h-4 w-4" />
-      <span>delete</span>
-    </DropdownMenuItem>
+    <ConfirmDialog
+      action={deleteChore.bind(null, chore.id)}
+      trigger={
+        <Button size="icon" variant="outline" className="flex w-full gap-x-1">
+          <LucideTrash className="h-4 w-4" />
+          <span>Delete</span>
+        </Button>
+      }
+    />
   );
 
   const handleUpdateChoreStatus = async (value: string) => {

@@ -45,17 +45,6 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </Button>
   );
 
-  const deleteButton = (
-    <ConfirmDialog
-      action={deleteChore.bind(null, chore.id)}
-      trigger={
-        <Button size="icon" variant="outline">
-          <LucideTrash className="h-4 w-4" />
-        </Button>
-      }
-    />
-  );
-
   const moreMenu = (
     <ChoreMoreMenu
       chore={chore}
@@ -101,7 +90,6 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         {isDetail ? (
           <>
             {editButton}
-            {deleteButton}
             {moreMenu}
           </>
         ) : (

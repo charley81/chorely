@@ -9,13 +9,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { ActionState } from './form/utils/to-action-state';
+import { SubmitButton } from './form/submit-button';
+import { Form } from './form/form';
+import { useActionState } from 'react';
+import { ActionState, EMPTY_ACTION_STATE } from './form/utils/to-action-state';
 
 type ConfirmDialogProps = {
   title?: string;
   description?: string;
-  action: () => Promise<void>;
+  action: () => Promise<ActionState>;
   trigger: React.ReactElement;
 };
 export function ConfirmDialog({
@@ -24,6 +26,7 @@ export function ConfirmDialog({
   action,
   trigger,
 }: ConfirmDialogProps) {
+  const [actionState, formAction] = useActionState(action, EMPTY_ACTION_STATE);
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
@@ -35,9 +38,9 @@ export function ConfirmDialog({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction asChild>
-            <form action={action}>
-              <Button type="submit">Confirm</Button>
-            </form>
+            <Form action={formAction} actionState={actionState}>
+              <SubmitButton label="Confirm" />
+            </Form>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
