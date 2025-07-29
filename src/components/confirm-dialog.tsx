@@ -1,3 +1,5 @@
+import { useActionState } from 'react';
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,9 +11,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { SubmitButton } from './form/submit-button';
+
 import { Form } from './form/form';
-import { useActionState } from 'react';
+import { SubmitButton } from './form/submit-button';
 import { ActionState, EMPTY_ACTION_STATE } from './form/utils/to-action-state';
 
 type ConfirmDialogProps = {

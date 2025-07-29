@@ -1,23 +1,23 @@
 'use client';
 
+import { LucideTrash } from 'lucide-react';
+import { toast } from 'sonner';
+
+import { ConfirmDialog } from '@/components/confirm-dialog';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Chore, ChoreStatus } from '@/generated/prisma';
-import { LucideTrash } from 'lucide-react';
-import { CHORE_STATUS_LABELS } from '../constants';
-import { updateChoreStatus } from '../actions/update-chore-status';
-import { toast } from 'sonner';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { Button } from '@/components/ui/button';
+
 import { deleteChore } from '../actions/delete-chore';
+import { updateChoreStatus } from '../actions/update-chore-status';
+import { CHORE_STATUS_LABELS } from '../constants';
 
 type ChoreMoreMenuProps = {
   chore: Chore;

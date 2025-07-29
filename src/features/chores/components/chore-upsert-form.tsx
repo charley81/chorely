@@ -2,6 +2,7 @@
 
 import { useActionState, useRef } from 'react';
 
+import { DatePicker } from '@/components/date-picker';
 import { FieldError } from '@/components/form/field-error';
 import { Form } from '@/components/form/form';
 import { SubmitButton } from '@/components/form/submit-button';
@@ -15,7 +16,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Chore } from '@/generated/prisma/client';
 
 import { upsertChore } from '../actions/upsert-chore';
-import { DatePicker } from '@/components/date-picker';
 
 type ChoreUpsertFormProps = {
   chore?: Chore;

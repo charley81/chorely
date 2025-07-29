@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 import {
+  LucideEllipsisVertical,
   LucideExternalLink,
   LucidePencil,
-  LucideTrash,
-  LucideEllipsisVertical,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -17,12 +16,10 @@ import {
 } from '@/components/ui/card';
 import { Chore } from '@/generated/prisma/client';
 import { choreEditPath, chorePath } from '@/paths';
-
-import { deleteChore } from '../actions/delete-chore';
-import { CHORE_ICONS } from '../constants';
 import { toCurrencyFromCent } from '@/utils/currency';
+
+import { CHORE_ICONS } from '../constants';
 import { ChoreMoreMenu } from './chore-more-menu';
-import { ConfirmDialog } from '@/components/confirm-dialog';
 type ChoreItemProps = {
   chore: Chore;
   isDetail?: boolean;
