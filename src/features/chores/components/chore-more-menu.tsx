@@ -1,3 +1,5 @@
+'use client';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +13,8 @@ import {
 import { Chore, ChoreStatus } from '@/generated/prisma';
 import { LucideTrash } from 'lucide-react';
 import { CHORE_STATUS_LABELS } from '../constants';
+import { updateChoreStatus } from '../actions/update-chore-status';
+import { toast } from 'sonner';
 
 type ChoreMoreMenuProps = {
   chore: Chore;
@@ -25,10 +29,23 @@ export function ChoreMoreMenu({ chore, trigger }: ChoreMoreMenuProps) {
     </DropdownMenuItem>
   );
 
+  const handleUpdateChoreStatus = async (value: string) => {
+    const result = await updateChoreStatus(chore.id, value as ChoreStatus);
+
+    if (result.status === 'ERROR') {
+      toast.error(result.message);
+    } else if (result.status === 'SUCCESS') {
+      toast.success(result.message);
+    }
+  };
+
   const ticketStatusRadioGroupItems = (
-    <DropdownMenuRadioGroup value={chore.status}>
+    <DropdownMenuRadioGroup
+      value={chore.status}
+      onValueChange={handleUpdateChoreStatus}
+    >
       {(Object.keys(CHORE_STATUS_LABELS) as Array<ChoreStatus>).map((key) => (
-        <DropdownMenuRadioItem key={key} value="key">
+        <DropdownMenuRadioItem key={key} value={key}>
           {CHORE_STATUS_LABELS[key]}
         </DropdownMenuRadioItem>
       ))}
