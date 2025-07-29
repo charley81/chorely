@@ -22,6 +22,7 @@ import { deleteChore } from '../actions/delete-chore';
 import { CHORE_ICONS } from '../constants';
 import { toCurrencyFromCent } from '@/utils/currency';
 import { ChoreMoreMenu } from './chore-more-menu';
+import { ConfirmDialog } from '@/components/confirm-dialog';
 type ChoreItemProps = {
   chore: Chore;
   isDetail?: boolean;
@@ -45,11 +46,14 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   );
 
   const deleteButton = (
-    <form action={deleteChore.bind(null, chore.id)}>
-      <Button size="icon" variant="outline">
-        <LucideTrash className="h-4 w-4" />
-      </Button>
-    </form>
+    <ConfirmDialog
+      action={deleteChore.bind(null, chore.id)}
+      trigger={
+        <Button size="icon" variant="outline">
+          <LucideTrash className="h-4 w-4" />
+        </Button>
+      }
+    />
   );
 
   const moreMenu = (
