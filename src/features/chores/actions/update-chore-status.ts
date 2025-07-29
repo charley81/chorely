@@ -1,4 +1,6 @@
 'use server';
+import { revalidatePath } from 'next/cache';
+
 import {
   fromErrorToActionState,
   toActionState,
@@ -6,7 +8,6 @@ import {
 import { ChoreStatus } from '@/generated/prisma';
 import prisma from '@/lib/prisma';
 import { choresPath } from '@/paths';
-import { revalidatePath } from 'next/cache';
 
 export const updateChoreStatus = async (id: string, status: ChoreStatus) => {
   try {

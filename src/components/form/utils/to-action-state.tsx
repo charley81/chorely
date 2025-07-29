@@ -49,9 +49,9 @@ export const toActionState = (
   return { status, message, fieldErrors: {}, timestamp: Date.now() };
 };
 
-function formatZodErrorMessage(error: ZodError): string {
+export const formatZodErrorMessage = (error: ZodError): string => {
   return error.issues[0]?.message || 'Form validation failed';
-}
+};
 
 function transformZodIssuesToFieldErrors(
   issues: ZodError['issues'],
