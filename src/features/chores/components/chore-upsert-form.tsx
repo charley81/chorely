@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useRef } from 'react';
 
 import { FieldError } from '@/components/form/field-error';
 import { Form } from '@/components/form/form';
@@ -21,14 +21,26 @@ type ChoreUpsertFormProps = {
   chore?: Chore;
 };
 
+type ImperativeHandleFromDatePicker = {
+  reset: () => void;
+};
+
 export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
   const [actionState, action] = useActionState<ActionState, FormData>(
     upsertChore.bind(null, chore?.id),
     EMPTY_ACTION_STATE,
   );
 
+  const datePickerImperativeHandleRef = useRef<ImperativeHandleFromDatePicker>(
+    null!,
+  );
+
+  const handleSuccess = () => {
+    datePickerImperativeHandleRef.current?.reset();
+  };
+
   return (
-    <Form action={action} actionState={actionState}>
+    <Form action={action} actionState={actionState} onSuccess={handleSuccess}>
       <Label htmlFor="title">Title</Label>
       <Input
         id="title"
@@ -54,6 +66,7 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
         <div className="w-1/2">
           <Label htmlFor="deadline">Deadline</Label>
           <DatePicker
+            imperativeHandleRef={datePickerImperativeHandleRef}
             id="deadline"
             name="deadline"
             defaultValue={
