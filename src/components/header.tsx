@@ -1,8 +1,10 @@
-import { LucideBrushCleaning } from 'lucide-react';
+import { LucideBrushCleaning, LucideLogOut } from 'lucide-react';
 import Link from 'next/link';
 
+import { signOut } from '@/features/auth/actions/sign-out';
 import { choresPath, homePath, signInPath, signUpPath } from '@/paths';
 
+import { SubmitButton } from './form/submit-button';
 import { ModeToggle } from './theme/mode-toggle';
 import { buttonVariants } from './ui/button';
 
@@ -27,6 +29,9 @@ export function Header() {
       >
         Sign In
       </Link>
+      <form action={signOut}>
+        <SubmitButton label="Sign Out" icon={<LucideLogOut />} />
+      </form>
     </>
   );
 
