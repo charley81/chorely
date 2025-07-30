@@ -1,4 +1,5 @@
 'use server';
+import { cookies } from 'next/headers';
 import { z } from 'zod';
 
 import {
@@ -6,6 +7,9 @@ import {
   fromErrorToActionState,
   toActionState,
 } from '@/components/form/utils/to-action-state';
+import { hashPassword } from '@/features/password/utils/hash-and-verify';
+import { lucia } from '@/lib/lucia';
+import prisma from '@/lib/prisma';
 
 const signUpSchema = z
   .object({
@@ -42,7 +46,39 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
       Object.fromEntries(formData),
     );
 
-    // TODO: add to DB
+    const existingEmail = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingEmail) {
+      return toActionState('ERROR', 'Email already in use');
+    }
+
+    const existingUser = await prisma.user.findUnique({
+      where: { username },
+    });
+
+    if (existingUser) {
+      return toActionState('ERROR', 'Username already taken');
+    }
+
+    const passwordHash = await hashPassword(password);
+
+    const user = await prisma.user.create({
+      data: {
+        username,
+        email,
+        passwordHash,
+      },
+    });
+
+    const session = await lucia.createSession(user.id, {});
+    const sessionCookie = lucia.createSessionCookie(session.id);
+    (await cookies()).set(
+      sessionCookie.name,
+      sessionCookie.value,
+      sessionCookie.attributes,
+    );
   } catch (error) {
     return fromErrorToActionState(error, formData);
   }
