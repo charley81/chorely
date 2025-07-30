@@ -9,10 +9,10 @@ import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-import { signUp } from '../actions/sign-up';
+import { signIn } from '../actions/sign-in';
 
 export function SignInForm() {
-  const [actionState, action] = useActionState(signUp, EMPTY_ACTION_STATE);
+  const [actionState, action] = useActionState(signIn, EMPTY_ACTION_STATE);
   return (
     <Form action={action} actionState={actionState}>
       <span>

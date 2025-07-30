@@ -1,6 +1,7 @@
 'use server';
 
 import { verify } from '@node-rs/argon2';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -9,6 +10,7 @@ import {
   fromErrorToActionState,
   toActionState,
 } from '@/components/form/utils/to-action-state';
+import { lucia } from '@/lib/lucia';
 import prisma from '@/lib/prisma';
 import { choresPath } from '@/paths';
 
@@ -33,14 +35,22 @@ export const signIn = async (_actionState: ActionState, formData: FormData) => {
     });
 
     if (!user) {
-      return toActionState('ERROR', 'User not found');
+      return toActionState('ERROR', 'Incorrect email or password');
     }
 
     const validPassword = await verify(user.passwordHash, password);
 
     if (!validPassword) {
-      return toActionState('ERROR', 'Invalid password');
+      return toActionState('ERROR', 'Incorrect email or password');
     }
+
+    const session = await lucia.createSession(user.id, {});
+    const sessionCookie = lucia.createSessionCookie(session.id);
+    (await cookies()).set(
+      sessionCookie.name,
+      sessionCookie.value,
+      sessionCookie.attributes,
+    );
   } catch (error) {
     return fromErrorToActionState(error, formData);
   }
