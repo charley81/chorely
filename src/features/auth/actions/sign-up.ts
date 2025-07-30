@@ -51,7 +51,7 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
     });
 
     if (existingEmail) {
-      return toActionState('ERROR', 'Email already in use');
+      return toActionState('ERROR', 'Email already in use', formData);
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -59,7 +59,7 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
     });
 
     if (existingUser) {
-      return toActionState('ERROR', 'Username already taken');
+      return toActionState('ERROR', 'Username already taken', formData);
     }
 
     const passwordHash = await hashPassword(password);

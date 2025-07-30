@@ -19,7 +19,13 @@ export function SignInForm() {
         <Label htmlFor="email" className="mb-2">
           Email
         </Label>
-        <Input name="email" id="email" placeholder="email" type="email" />
+        <Input
+          name="email"
+          id="email"
+          placeholder="email"
+          type="email"
+          defaultValue={actionState.payload?.get('email') as string}
+        />
         <FieldError actionState={actionState} name="email" />
       </span>
       <span>
@@ -31,6 +37,7 @@ export function SignInForm() {
           id="password"
           placeholder="password"
           type="password"
+          defaultValue={actionState.payload?.get('password') as string}
         />
         <FieldError actionState={actionState} name="password" />
       </span>
