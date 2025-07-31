@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint-fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate --legacy-peer-deps"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
