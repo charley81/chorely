@@ -2,14 +2,17 @@ import { LucideBrushCleaning, LucideLogOut } from 'lucide-react';
 import Link from 'next/link';
 
 import { signOut } from '@/features/auth/actions/sign-out';
+import { getAuth } from '@/features/auth/queries/get-auth';
 import { choresPath, homePath, signInPath, signUpPath } from '@/paths';
 
 import { SubmitButton } from './form/submit-button';
 import { ModeToggle } from './theme/mode-toggle';
 import { buttonVariants } from './ui/button';
 
-export function Header() {
-  const navItems = (
+export async function Header() {
+  const { user } = await getAuth();
+
+  const navItems = user ? (
     <>
       <Link
         href={choresPath()}
@@ -17,6 +20,16 @@ export function Header() {
       >
         Chores
       </Link>
+      <form action={signOut}>
+        <SubmitButton
+          label="Sign Out"
+          icon={<LucideLogOut />}
+          variant="outline"
+        />
+      </form>
+    </>
+  ) : (
+    <>
       <Link
         href={signUpPath()}
         className={buttonVariants({ variant: 'outline' })}
@@ -25,13 +38,10 @@ export function Header() {
       </Link>
       <Link
         href={signInPath()}
-        className={buttonVariants({ variant: 'outline' })}
+        className={buttonVariants({ variant: 'default' })}
       >
         Sign In
       </Link>
-      <form action={signOut}>
-        <SubmitButton label="Sign Out" icon={<LucideLogOut />} />
-      </form>
     </>
   );
 
