@@ -23,7 +23,13 @@ import { ChoreMoreMenu } from './chore-more-menu';
 
 type ChoreItemProps = {
   chore: Prisma.ChoreGetPayload<{
-    include: { user: true };
+    include: {
+      user: {
+        select: {
+          username: true;
+        };
+      };
+    };
   }>;
   isDetail?: boolean;
 };
