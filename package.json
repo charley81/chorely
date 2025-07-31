@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "postinstall": "npm install --legacy-peer-deps && prisma generate"
+    "postinstall": "prisma generate",
+    "build": "npm install --legacy-peer-deps && next build",
+    "install": "npm install --legacy-peer-deps"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
