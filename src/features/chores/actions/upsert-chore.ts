@@ -9,9 +9,10 @@ import {
   fromErrorToActionState,
   toActionState,
 } from '@/components/form/utils/to-action-state';
-import { getAuth } from '@/features/auth/actions/get-auth';
+import { getAuthOrRedirect } from '@/features/auth/queries/get-auth-or-redirect';
+import { isOwner } from '@/features/utils/is-owner';
 import prisma from '@/lib/prisma';
-import { chorePath, choresPath, signInPath } from '@/paths';
+import { chorePath, choresPath } from '@/paths';
 import { toCent } from '@/utils/currency';
 
 const upsertChoreScema = z.object({
@@ -32,13 +33,21 @@ export const upsertChore = async (
   _actionState: ActionState,
   formData: FormData,
 ): Promise<ActionState> => {
-  const { user } = await getAuth();
-
-  if (!user) {
-    redirect(signInPath());
-  }
+  const { user } = await getAuthOrRedirect();
 
   try {
+    if (id) {
+      const chore = await prisma.chore.findUnique({
+        where: {
+          id,
+        },
+      });
+
+      if (!chore || !isOwner(user, chore)) {
+        return toActionState('ERROR', 'Not authorized');
+      }
+    }
+
     const data = upsertChoreScema.parse({
       title: formData.get('title') as string,
       content: formData.get('content') as string,

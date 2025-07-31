@@ -14,6 +14,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { getAuthOrRedirect } from '@/features/auth/queries/get-auth-or-redirect';
+import { isOwner } from '@/features/utils/is-owner';
 import { Prisma } from '@/generated/prisma/client';
 import { choreEditPath, chorePath } from '@/paths';
 import { toCurrencyFromCent } from '@/utils/currency';
@@ -34,14 +36,17 @@ type ChoreItemProps = {
   isDetail?: boolean;
 };
 
-export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
-  const editButton = (
+export async function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const { user } = await getAuthOrRedirect();
+  const isChoreOwner = isOwner(user, chore);
+
+  const editButton = isChoreOwner ? (
     <Button asChild size="icon" variant="outline">
       <Link href={choreEditPath(chore.id)}>
         <LucidePencil className="h-4 w-4" />
       </Link>
     </Button>
-  );
+  ) : null;
 
   const detailButton = (
     <Button asChild size="icon" variant="outline">
@@ -51,7 +56,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </Button>
   );
 
-  const moreMenu = (
+  const moreMenu = isChoreOwner ? (
     <ChoreMoreMenu
       chore={chore}
       trigger={
@@ -60,7 +65,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         </Button>
       }
     />
-  );
+  ) : null;
 
   return (
     <div
