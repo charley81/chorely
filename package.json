@@ -8,9 +8,9 @@
     "lint": "next lint",
     "lint-fix": "next lint --fix",
     "type-check": "tsc --noEmit",
+    "preinstall": "npm config set legacy-peer-deps true",
     "postinstall": "prisma generate",
-    "build": "npm install --legacy-peer-deps && next build",
-    "install": "npm install --legacy-peer-deps"
+    "build": "npm install --legacy-peer-deps && next build"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
