@@ -8,8 +8,7 @@
     "lint": "next lint",
     "lint-fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "preinstall": "npm config set legacy-peer-deps true",
-    "postinstall": "npm install prisma && npx prisma generate",
+    "postinstall": "prisma generate",
     "build": "next build"
   },
   "prisma": {
