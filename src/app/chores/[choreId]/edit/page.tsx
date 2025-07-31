@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
 
 import { CardCompact } from '@/components/card-compact';
+import { getAuth } from '@/features/auth/actions/get-auth';
 import { ChoreUpsertForm } from '@/features/chores/components/chore-upsert-form';
 import { getChore } from '@/features/chores/queries/get-chore';
+import { isOwner } from '@/features/utils/is-owner';
 
 type ChoreEditPageProps = {
   params: Promise<{
@@ -11,10 +13,13 @@ type ChoreEditPageProps = {
 };
 
 export default async function ChoreEditPage({ params }: ChoreEditPageProps) {
+  const { user } = await getAuth();
   const { choreId } = await params;
   const chore = await getChore(choreId);
 
-  if (!chore) {
+  const isChoreOwner = isOwner(user, chore);
+
+  if (!chore || !isChoreOwner) {
     notFound();
   }
 

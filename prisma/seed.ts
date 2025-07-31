@@ -1,36 +1,69 @@
-// import { PrismaClient } from '@/generated/prisma/client';
+import { hash } from '@node-rs/argon2';
 
-// const prisma = new PrismaClient();
+import { PrismaClient } from '@/generated/prisma/client';
 
-// const chores = [
-//   {
-//     title: 'Chore 1',
-//     content: 'This is the first chore from the DB',
-//     status: 'DONE' as const,
-//   },
-//   {
-//     title: 'Chore 2',
-//     content: 'This is the second chore from the DB',
-//     status: 'OPEN' as const,
-//   },
-//   {
-//     title: 'Chore 3',
-//     content: 'This is the third chore from the DB',
-//     status: 'WORKING' as const,
-//   },
-// ];
+const prisma = new PrismaClient();
 
-// export async function main() {
-//   const t0 = performance.now();
-//   console.log('DB Seed: Started...');
+const users = [
+  {
+    username: 'admin',
+    email: 'admin@mail.com',
+  },
+  {
+    username: 'user',
+    email: 'user.chorely@proton.me',
+  },
+];
 
-//   await prisma.chore.deleteMany();
-//   await prisma.chore.createMany({
-//     data: chores,
-//   });
+const chores = [
+  {
+    title: 'Chore 1',
+    content: 'This is the first chore from the DB',
+    status: 'DONE' as const,
+    deadline: new Date().toISOString().split('T')[0],
+    bounty: 100,
+  },
+  {
+    title: 'Chore 2',
+    content: 'This is the second chore from the DB',
+    status: 'OPEN' as const,
+    deadline: new Date().toISOString().split('T')[0],
+    bounty: 20,
+  },
+  {
+    title: 'Chore 3',
+    content: 'This is the third chore from the DB',
+    status: 'WORKING' as const,
+    deadline: new Date().toISOString().split('T')[0],
+    bounty: 50,
+  },
+];
 
-//   const t1 = performance.now();
-//   console.log(`DB Seed: Finished (${t1 - t0}ms)`);
-// }
+export async function main() {
+  const t0 = performance.now();
+  console.log('DB Seed: Started...');
 
-// main();
+  await prisma.user.deleteMany();
+  await prisma.chore.deleteMany();
+
+  const passwordHash = await hash('geheimnis');
+
+  const dbUsers = await prisma.user.createManyAndReturn({
+    data: users.map((user) => ({
+      ...user,
+      passwordHash,
+    })),
+  });
+
+  await prisma.chore.createMany({
+    data: chores.map((chore) => ({
+      ...chore,
+      userId: dbUsers[0].id,
+    })),
+  });
+
+  const t1 = performance.now();
+  console.log(`DB Seed: Finished (${t1 - t0}ms)`);
+}
+
+main();

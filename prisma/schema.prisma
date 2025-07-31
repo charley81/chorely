@@ -16,6 +16,7 @@ model User {
   email        String    @unique
   passwordHash String
   sessions     Session[]
+  chores       Chore[]
 }
 
 model Session {
@@ -36,6 +37,10 @@ model Chore {
   status    ChoreStatus @default(OPEN)
   bounty    Int
   deadline  String
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 enum ChoreStatus {

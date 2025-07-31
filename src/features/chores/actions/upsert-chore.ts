@@ -9,6 +9,8 @@ import {
   fromErrorToActionState,
   toActionState,
 } from '@/components/form/utils/to-action-state';
+import { getAuthOrRedirect } from '@/features/auth/queries/get-auth-or-redirect';
+import { isOwner } from '@/features/utils/is-owner';
 import prisma from '@/lib/prisma';
 import { chorePath, choresPath } from '@/paths';
 import { toCent } from '@/utils/currency';
@@ -31,7 +33,21 @@ export const upsertChore = async (
   _actionState: ActionState,
   formData: FormData,
 ): Promise<ActionState> => {
+  const { user } = await getAuthOrRedirect();
+
   try {
+    if (id) {
+      const chore = await prisma.chore.findUnique({
+        where: {
+          id,
+        },
+      });
+
+      if (!chore || !isOwner(user, chore)) {
+        return toActionState('ERROR', 'Not authorized');
+      }
+    }
+
     const data = upsertChoreScema.parse({
       title: formData.get('title') as string,
       content: formData.get('content') as string,
@@ -41,6 +57,7 @@ export const upsertChore = async (
 
     const dbData = {
       ...data,
+      userId: user.id,
       bounty: toCent(data.bounty),
     };
 

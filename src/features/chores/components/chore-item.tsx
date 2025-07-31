@@ -14,25 +14,39 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Chore } from '@/generated/prisma/client';
+import { getAuthOrRedirect } from '@/features/auth/queries/get-auth-or-redirect';
+import { isOwner } from '@/features/utils/is-owner';
+import { Prisma } from '@/generated/prisma/client';
 import { choreEditPath, chorePath } from '@/paths';
 import { toCurrencyFromCent } from '@/utils/currency';
 
 import { CHORE_ICONS } from '../constants';
 import { ChoreMoreMenu } from './chore-more-menu';
+
 type ChoreItemProps = {
-  chore: Chore;
+  chore: Prisma.ChoreGetPayload<{
+    include: {
+      user: {
+        select: {
+          username: true;
+        };
+      };
+    };
+  }>;
   isDetail?: boolean;
 };
 
-export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
-  const editButton = (
+export async function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const { user } = await getAuthOrRedirect();
+  const isChoreOwner = isOwner(user, chore);
+
+  const editButton = isChoreOwner ? (
     <Button asChild size="icon" variant="outline">
       <Link href={choreEditPath(chore.id)}>
         <LucidePencil className="h-4 w-4" />
       </Link>
     </Button>
-  );
+  ) : null;
 
   const detailButton = (
     <Button asChild size="icon" variant="outline">
@@ -42,7 +56,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </Button>
   );
 
-  const moreMenu = (
+  const moreMenu = isChoreOwner ? (
     <ChoreMoreMenu
       chore={chore}
       trigger={
@@ -51,7 +65,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         </Button>
       }
     />
-  );
+  ) : null;
 
   return (
     <div
@@ -76,7 +90,9 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
           </span>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <p className="text-muted-foreground text-sm">{chore.deadline}</p>
+          <p className="text-muted-foreground text-sm">
+            {chore.deadline} by {chore.user.username}
+          </p>
           <p className="text-muted-foreground text-sm">
             {toCurrencyFromCent(chore.bounty)}
           </p>

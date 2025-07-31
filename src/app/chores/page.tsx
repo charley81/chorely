@@ -6,7 +6,7 @@ import { Spinner } from '@/components/spinner';
 import { ChoreList } from '@/features/chores/components/chore-list';
 import { ChoreUpsertForm } from '@/features/chores/components/chore-upsert-form';
 
-export default function ChoresPage() {
+export default async function ChoresPage() {
   return (
     <>
       <div className="flex flex-1 flex-col gap-y-8">

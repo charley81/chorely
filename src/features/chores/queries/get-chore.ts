@@ -6,6 +6,13 @@ export const getChore = async (id: string) => {
       where: {
         id: id.trim(),
       },
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
+        },
+      },
     });
   } catch (error) {
     console.error('Prisma Error: ', error);
