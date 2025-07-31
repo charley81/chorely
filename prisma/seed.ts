@@ -43,8 +43,8 @@ export async function main() {
   const t0 = performance.now();
   console.log('DB Seed: Started...');
 
-  await prisma.chore.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.chore.deleteMany();
 
   const passwordHash = await hash('geheimnis');
 

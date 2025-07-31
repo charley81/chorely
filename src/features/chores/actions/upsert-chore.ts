@@ -9,8 +9,9 @@ import {
   fromErrorToActionState,
   toActionState,
 } from '@/components/form/utils/to-action-state';
+import { getAuth } from '@/features/auth/actions/get-auth';
 import prisma from '@/lib/prisma';
-import { chorePath, choresPath } from '@/paths';
+import { chorePath, choresPath, signInPath } from '@/paths';
 import { toCent } from '@/utils/currency';
 
 const upsertChoreScema = z.object({
@@ -31,6 +32,12 @@ export const upsertChore = async (
   _actionState: ActionState,
   formData: FormData,
 ): Promise<ActionState> => {
+  const { user } = await getAuth();
+
+  if (!user) {
+    redirect(signInPath());
+  }
+
   try {
     const data = upsertChoreScema.parse({
       title: formData.get('title') as string,
@@ -41,6 +48,7 @@ export const upsertChore = async (
 
     const dbData = {
       ...data,
+      userId: user.id,
       bounty: toCent(data.bounty),
     };
 
