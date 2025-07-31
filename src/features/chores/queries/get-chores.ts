@@ -6,6 +6,9 @@ export const getChores = async () => {
       orderBy: {
         createdAt: 'desc',
       },
+      include: {
+        user: true,
+      },
     });
   } catch (error) {
     console.log('Prisma Error: ', error);

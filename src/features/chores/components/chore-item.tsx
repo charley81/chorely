@@ -14,14 +14,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Chore } from '@/generated/prisma/client';
+import { Prisma } from '@/generated/prisma/client';
 import { choreEditPath, chorePath } from '@/paths';
 import { toCurrencyFromCent } from '@/utils/currency';
 
 import { CHORE_ICONS } from '../constants';
 import { ChoreMoreMenu } from './chore-more-menu';
+
 type ChoreItemProps = {
-  chore: Chore;
+  chore: Prisma.ChoreGetPayload<{
+    include: { user: true };
+  }>;
   isDetail?: boolean;
 };
 
@@ -76,7 +79,9 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
           </span>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <p className="text-muted-foreground text-sm">{chore.deadline}</p>
+          <p className="text-muted-foreground text-sm">
+            {chore.deadline} by {chore.user.username}
+          </p>
           <p className="text-muted-foreground text-sm">
             {toCurrencyFromCent(chore.bounty)}
           </p>
