@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="flex gap-x-2 justify-end p-4 font-bold">
+        <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-700 ">
           <div>
             <Link href={homePath()}>Home</Link>
           </div>
@@ -37,7 +37,9 @@ export default function RootLayout({
             <Link href={choresPath()}>Chores</Link>
           </div>
         </nav>
-        <main>{children}</main>
+        <main className="flex flex-col min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-24 px-8">
+          {children}
+        </main>
       </body>
     </html>
   )
