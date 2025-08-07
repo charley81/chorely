@@ -1,4 +1,4 @@
-import { initialChores } from '@/app/data'
+import { initialChores } from '@/data'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>

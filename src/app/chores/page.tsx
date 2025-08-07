@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { initialChores } from '../data'
+import { initialChores } from '@/data'
 
 export default function ChoresPage() {
   return (
