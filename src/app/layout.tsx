@@ -1,7 +1,9 @@
 import './globals.css'
+import Link from 'next/link'
 
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { choresPath, homePath } from '@/paths'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -27,7 +29,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <nav className="flex gap-x-2 justify-end p-4 font-bold">
+          <div>
+            <Link href={homePath()}>Home</Link>
+          </div>
+          <div>
+            <Link href={choresPath()}>Chores</Link>
+          </div>
+        </nav>
+        <main>{children}</main>
       </body>
     </html>
   )

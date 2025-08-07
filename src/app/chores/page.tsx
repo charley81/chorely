@@ -5,7 +5,7 @@ import { chorePath } from '@/paths'
 
 export default function ChoresPage() {
   return (
-    <div>
+    <div className="flex flex-col gap-y-4">
       {initialChores.map((chore) => (
         <Link key={chore.id} href={chorePath(chore.id)}>
           {chore.title}
