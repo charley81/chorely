@@ -5,6 +5,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import Link from 'next/link'
 
 import { choresPath, homePath } from '@/paths'
+import { ThemeProvider } from '@/components/theme/theme-provider'
+import { ModeToggle } from '@/components/theme/mode-toggle'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -26,21 +28,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-700 ">
-          <div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-700 ">
             <Link href={homePath()}>Home</Link>
-          </div>
-          <div>
-            <Link href={choresPath()}>Chores</Link>
-          </div>
-        </nav>
-        <main className="flex flex-col min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-24 px-8">
-          {children}
-        </main>
+            <div className="flex gap-x-4 items-center">
+              <ModeToggle />
+              <Link href={choresPath()}>Chores</Link>
+            </div>
+          </nav>
+          <main className="flex flex-col min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-48 px-8">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   )
