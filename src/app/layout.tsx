@@ -1,15 +1,15 @@
 import './globals.css'
 
+import { LucideBrushCleaning } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Link from 'next/link'
-import { LucideBrushCleaning } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 import { ModeToggle } from '@/components/theme/mode-toggle'
 import { ThemeProvider } from '@/components/theme/theme-provider'
-import { choresPath, homePath } from '@/paths'
 import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { choresPath, homePath } from '@/paths'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],

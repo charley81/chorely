@@ -1,9 +1,9 @@
+import { clsx } from 'clsx'
 import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react'
 import Link from 'next/link'
 
 import { initialChores } from '@/data'
 import { chorePath } from '@/paths'
-import { clsx } from 'clsx'
 
 const CHORE_STATUS = {
   DONE: <LucideCheck />,
