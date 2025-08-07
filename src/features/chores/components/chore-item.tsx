@@ -1,18 +1,18 @@
-import { chorePath } from '@/paths'
 import clsx from 'clsx'
-import Link from 'next/link'
-import { Chore } from '@/data'
 import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react'
+import Link from 'next/link'
+
+import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { buttonVariants } from '@/components/ui/button'
+import { Chore } from '@/data'
+import { chorePath } from '@/paths'
 
 type ChoreItemProps = {
   chore: Chore
