@@ -13,7 +13,7 @@ export const initialChores: Chore[] = [
   },
 ]
 
-type Chore = {
+export type Chore = {
   id: string
   title: string
   content: string
