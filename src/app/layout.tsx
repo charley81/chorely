@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-700 ">
+          <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-500 ">
             <Link href={homePath()}>Home</Link>
             <div className="flex gap-x-4 items-center">
               <ModeToggle />
