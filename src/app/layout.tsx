@@ -4,9 +4,9 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Link from 'next/link'
 
-import { choresPath, homePath } from '@/paths'
-import { ThemeProvider } from '@/components/theme/theme-provider'
 import { ModeToggle } from '@/components/theme/mode-toggle'
+import { ThemeProvider } from '@/components/theme/theme-provider'
+import { choresPath, homePath } from '@/paths'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
