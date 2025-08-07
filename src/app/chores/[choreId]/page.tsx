@@ -1,7 +1,8 @@
+import Link from 'next/link'
+
 import { Button } from '@/components/ui/button'
 import { initialChores } from '@/data'
 import { choresPath } from '@/paths'
-import Link from 'next/link'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>

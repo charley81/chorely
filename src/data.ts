@@ -1,4 +1,4 @@
-export const initialChores = [
+export const initialChores: Chore[] = [
   {
     id: '1',
     title: 'Chore 1',
@@ -9,6 +9,13 @@ export const initialChores = [
     id: '2',
     title: 'Chore 2',
     content: 'This is the content for chore 2',
-    status: 'DONE',
+    status: 'OPEN',
   },
 ]
+
+type Chore = {
+  id: string
+  title: string
+  content: string
+  status: 'DONE' | 'OPEN' | 'IN_PROGRESS'
+}
