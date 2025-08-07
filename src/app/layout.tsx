@@ -3,10 +3,12 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Link from 'next/link'
+import { LucideBrushCleaning } from 'lucide-react'
 
 import { ModeToggle } from '@/components/theme/mode-toggle'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import { choresPath, homePath } from '@/paths'
+import { Button } from '@/components/ui/button'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -39,10 +41,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-500 ">
-            <Link href={homePath()}>Home</Link>
+            <Button asChild variant="ghost" className="font-black text-xl">
+              <Link href={homePath()}>
+                <LucideBrushCleaning /> Home
+              </Link>
+            </Button>
             <div className="flex gap-x-4 items-center">
               <ModeToggle />
-              <Link href={choresPath()}>Chores</Link>
+              <Button asChild>
+                <Link href={choresPath()}>Chores</Link>
+              </Button>
             </div>
           </nav>
           <main className="flex flex-col min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-48 px-8">

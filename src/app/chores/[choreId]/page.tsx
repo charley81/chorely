@@ -21,7 +21,7 @@ export default async function ChorePage({ params }: ChorePageParams) {
     )
   }
   return (
-    <div>
+    <div className="animate-fade-in-from-top">
       <h3>{chore.title}</h3>
       <p>{chore.content}</p>
       <Button asChild>
