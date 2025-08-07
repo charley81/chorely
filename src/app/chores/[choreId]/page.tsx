@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { initialChores } from '@/data'
 import { choresPath } from '@/paths'
+import { Header } from '@/components/header'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
@@ -21,12 +22,15 @@ export default async function ChorePage({ params }: ChorePageParams) {
     )
   }
   return (
-    <div className="animate-fade-in-from-top">
-      <h3>{chore.title}</h3>
-      <p>{chore.content}</p>
-      <Button asChild>
-        <Link href={choresPath()}>Back</Link>
-      </Button>
-    </div>
+    <>
+      <Header title="Chore Page" description="Get the details here" />
+      <div className="animate-fade-in-from-top mt-12">
+        <h3>{chore.title}</h3>
+        <p>{chore.content}</p>
+        <Button asChild>
+          <Link href={choresPath()}>Back</Link>
+        </Button>
+      </div>
+    </>
   )
 }

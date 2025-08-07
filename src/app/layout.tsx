@@ -41,17 +41,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-500 ">
+          <nav className="fixed top-0 right-0 left-0 z-20 flex w-full justify-between gap-x-2 border-b border-slate-500 p-6 font-bold">
             <Link
               href={homePath()}
               className={cn(
                 buttonVariants({ variant: 'ghost' }),
-                'font-bold text-xl'
+                'text-xl font-bold',
               )}
             >
               <LucideBrushCleaning /> Home
             </Link>
-            <div className="flex gap-x-4 items-center">
+            <div className="flex items-center gap-x-4">
               <ModeToggle />
               <Link
                 href={choresPath()}
@@ -61,7 +61,7 @@ export default function RootLayout({
               </Link>
             </div>
           </nav>
-          <main className="flex flex-col min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-48 px-8">
+          <main className="flex min-h-screen flex-1 flex-col overflow-x-hidden overflow-y-auto px-8 py-32">
             {children}
           </main>
         </ThemeProvider>

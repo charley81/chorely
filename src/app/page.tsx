@@ -1,7 +1,9 @@
+import { Header } from '@/components/header'
+
 export default function Home() {
   return (
     <div>
-      <h1 className="text-6xl font-bold">Chorely</h1>
+      <Header title="Chorely" description="Post chores, get em done" />
     </div>
   )
 }
