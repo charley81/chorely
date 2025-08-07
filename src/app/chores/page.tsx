@@ -13,7 +13,7 @@ const CHORE_STATUS = {
 
 export default function ChoresPage() {
   return (
-    <div className="flex flex-col gap-y-4 items-center w-full ">
+    <div className="flex flex-col gap-y-4 items-center w-full animate-fade-in-from-top">
       {initialChores.map((chore) => (
         <Link
           key={chore.id}
