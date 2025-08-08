@@ -13,15 +13,10 @@ import {
 } from '@/components/ui/card'
 import { Chore } from '@/data'
 import { chorePath } from '@/paths'
+import { CHORE_STATUS } from '../constants'
 
 type ChoreItemProps = {
   chore: Chore
-}
-
-const CHORE_STATUS = {
-  DONE: <LucideCheck />,
-  OPEN: <LucideLockOpen />,
-  IN_PROGRESS: <LucideBicepsFlexed />,
 }
 
 export function ChoreItem({ chore }: ChoreItemProps) {
