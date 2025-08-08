@@ -31,12 +31,12 @@ export function ChoreItem({ chore }: ChoreItemProps) {
         <CardAction className="text-slate-500">
           {CHORE_STATUS[chore.status]}
         </CardAction>
-        <CardTitle className="text-2xl font-semibold truncate">
+        <CardTitle className="truncate text-2xl font-semibold">
           {chore.title}
         </CardTitle>
       </CardHeader>
       <CardContent
-        className={clsx('text-base truncate text-slate-500', {
+        className={clsx('truncate text-base text-slate-500', {
           'line-through': chore.status === 'DONE',
         })}
       >

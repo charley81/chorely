@@ -1,15 +1,10 @@
 import './globals.css'
 
-import { LucideBrushCleaning } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import Link from 'next/link'
 
-import { ModeToggle } from '@/components/theme/mode-toggle'
+import MainNav from '@/components/main-nav'
 import { ThemeProvider } from '@/components/theme/theme-provider'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import { choresPath, homePath } from '@/paths'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -41,27 +36,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="flex gap-x-2 justify-between p-6 font-bold w-full fixed left-0 right-0 top-0 z-20 border-b border-slate-500 ">
-            <Link
-              href={homePath()}
-              className={cn(
-                buttonVariants({ variant: 'ghost' }),
-                'font-bold text-xl'
-              )}
-            >
-              <LucideBrushCleaning /> Home
-            </Link>
-            <div className="flex gap-x-4 items-center">
-              <ModeToggle />
-              <Link
-                href={choresPath()}
-                className={buttonVariants({ variant: 'default' })}
-              >
-                Chores
-              </Link>
-            </div>
-          </nav>
-          <main className="flex flex-col min-h-screen flex-1 overflow-y-auto overflow-x-hidden py-48 px-8">
+          <MainNav />
+          <main className="flex min-h-screen flex-1 flex-col overflow-x-hidden overflow-y-auto px-8 py-32">
             {children}
           </main>
         </ThemeProvider>
