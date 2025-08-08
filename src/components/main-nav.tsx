@@ -1,9 +1,11 @@
-import { cn } from '@/lib/utils'
-import { homePath, choresPath } from '@/paths'
 import { LucideBrushCleaning } from 'lucide-react'
+import Link from 'next/link'
+
+import { cn } from '@/lib/utils'
+import { choresPath,homePath } from '@/paths'
+
 import { ModeToggle } from './theme/mode-toggle'
 import { buttonVariants } from './ui/button'
-import Link from 'next/link'
 
 export default function MainNav() {
   return (

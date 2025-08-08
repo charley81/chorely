@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
+import { Heading } from '@/components/heading'
+import { Placeholder } from '@/components/placeholder'
 import { Button } from '@/components/ui/button'
 import { initialChores } from '@/data'
 import { choresPath } from '@/paths'
-import { Heading } from '@/components/heading'
-import { Placeholder } from '@/components/placeholder'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
