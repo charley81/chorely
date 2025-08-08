@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/theme/theme-provider'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { choresPath, homePath } from '@/paths'
+import MainNav from '@/components/main-nav'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -41,26 +42,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="fixed top-0 right-0 left-0 z-20 flex w-full justify-between gap-x-2 border-b border-slate-500 p-6 font-bold">
-            <Link
-              href={homePath()}
-              className={cn(
-                buttonVariants({ variant: 'ghost' }),
-                'text-xl font-bold',
-              )}
-            >
-              <LucideBrushCleaning /> Home
-            </Link>
-            <div className="flex items-center gap-x-4">
-              <ModeToggle />
-              <Link
-                href={choresPath()}
-                className={buttonVariants({ variant: 'default' })}
-              >
-                Chores
-              </Link>
-            </div>
-          </nav>
+          <MainNav />
           <main className="flex min-h-screen flex-1 flex-col overflow-x-hidden overflow-y-auto px-8 py-32">
             {children}
           </main>

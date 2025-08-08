@@ -1,9 +1,9 @@
-import { Header } from '@/components/header'
+import { Heading } from '@/components/heading'
 
 export default function Home() {
   return (
     <div>
-      <Header title="Chorely" description="Post chores, get em done" />
+      <Heading title="Chorely" description="Post chores, get em done" />
     </div>
   )
 }
