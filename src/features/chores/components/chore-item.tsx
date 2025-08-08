@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Chore } from '@/data'
+import { Chore } from '../types'
 import { chorePath } from '@/paths'
 import { CHORE_STATUS } from '../constants'
 
