@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+
 import { Placeholder } from './placeholder'
-import { LucideCircleAlert } from 'lucide-react'
 import { Button } from './ui/button'
 
 describe('Placeholder', () => {
@@ -12,7 +12,7 @@ describe('Placeholder', () => {
     expect(icon).toBeInTheDocument()
     expect(icon).toHaveClass('h-16, w-16')
 
-    expect(screen.getByText('Test Message')).toBeInTheDocument
+    expect(screen.getByText('Test Message')).toBeInTheDocument()
   })
 
   it('renders custom icon correctly', () => {
