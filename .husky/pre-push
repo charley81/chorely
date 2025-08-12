@@ -1,9 +1,15 @@
-#!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
+#!/bin/sh
 
-# Run your checks
-npm run lint-fix &&
-npm run lint && 
-echo "✅ Lint passed" && 
-npm run type && 
-echo "✅ Types validated" &&
+echo "🔧 Fixing lint issues..."
+npm run lint-fix || exit 1
+echo "✅ Lint fixes applied"
+
+echo "➡️ Running pre-push checks..."
+echo "🔍 Linting..."
+npm run lint || exit 1
+echo "✅ Lint passed"
+
+echo "🔍 Type checking..."
+npm run type || exit 1
+echo "✅ Types validated"
+
