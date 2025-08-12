@@ -17,9 +17,10 @@ import { Chore } from '../types'
 
 type ChoreItemProps = {
   chore: Chore
+  isDetail?: boolean
 }
 
-export function ChoreItem({ chore }: ChoreItemProps) {
+export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   const detailButton = (
     <Button asChild variant="outline" size="icon">
       <Link href={chorePath(chore.id)}>
@@ -29,8 +30,13 @@ export function ChoreItem({ chore }: ChoreItemProps) {
   )
 
   return (
-    <div className="flex w-full justify-center gap-1">
-      <Card className="w-full max-w-[448px]">
+    <div
+      className={clsx('flex w-full justify-center gap-1', {
+        'max-w-[448px]': !isDetail,
+        'max-w-[648px]': isDetail,
+      })}
+    >
+      <Card className="w-full">
         <CardHeader>
           <CardAction className="text-slate-500">
             {CHORE_STATUS[chore.status]}
@@ -47,7 +53,9 @@ export function ChoreItem({ chore }: ChoreItemProps) {
           {chore.content}
         </CardContent>
       </Card>
-      <div className="flex flex-col gap-y-1">{detailButton}</div>
+      {isDetail ? null : (
+        <div className="flex flex-col gap-y-1">{detailButton}</div>
+      )}
     </div>
   )
 }
