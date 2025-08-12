@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { LucideEye } from 'lucide-react'
+import { LucideEye, LucideArrowBigLeft } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { chorePath } from '@/paths'
+import { chorePath, choresPath } from '@/paths'
 
 import { CHORE_STATUS } from '../constants'
 import { Chore } from '../types'
@@ -21,6 +21,13 @@ type ChoreItemProps = {
 }
 
 export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const backButton = (
+    <Button asChild variant="outline" size="icon">
+      <Link href={choresPath()}>
+        <LucideArrowBigLeft />
+      </Link>
+    </Button>
+  )
   const detailButton = (
     <Button asChild variant="outline" size="icon">
       <Link href={chorePath(chore.id)}>
@@ -46,16 +53,17 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
           </CardTitle>
         </CardHeader>
         <CardContent
-          className={clsx('truncate text-base text-slate-500', {
+          className={clsx('text-base text-slate-500', {
             'line-through': chore.status === 'DONE',
+            'line-clamp-3': !isDetail,
           })}
         >
           {chore.content}
         </CardContent>
       </Card>
-      {isDetail ? null : (
-        <div className="flex flex-col gap-y-1">{detailButton}</div>
-      )}
+      <div className="flex flex-col gap-y-1">
+        {isDetail ? <>{backButton}</> : <>{detailButton}</>}
+      </div>
     </div>
   )
 }
