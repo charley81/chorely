@@ -1,7 +1,8 @@
 import clsx from 'clsx'
+import { LucideEye } from 'lucide-react'
 import Link from 'next/link'
 
-import { Button, buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardAction,
@@ -10,7 +11,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { chorePath } from '@/paths'
-import { LucideEye } from 'lucide-react'
 
 import { CHORE_STATUS } from '../constants'
 import { Chore } from '../types'
