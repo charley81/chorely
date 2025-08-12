@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { LucideEye } from 'lucide-react'
 import Link from 'next/link'
 
-import { buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardAction,
@@ -21,12 +21,11 @@ type ChoreItemProps = {
 
 export function ChoreItem({ chore }: ChoreItemProps) {
   const detailButton = (
-    <Link
-      href={chorePath(chore.id)}
-      className={buttonVariants({ variant: 'outline', size: 'icon' })}
-    >
-      <LucideEye />
-    </Link>
+    <Button asChild variant="outline" size="icon">
+      <Link href={chorePath(chore.id)}>
+        <LucideEye />
+      </Link>
+    </Button>
   )
 
   return (
