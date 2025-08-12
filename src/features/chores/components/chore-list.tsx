@@ -1,5 +1,4 @@
-import { Chore } from '@/data'
-
+import { Chore } from '../types'
 import { ChoreItem } from './chore-item'
 
 type ChoreListProps = {
