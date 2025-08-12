@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { LucideArrowBigLeft,LucideEye } from 'lucide-react'
+import { LucideArrowBigLeft, LucideEye } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
