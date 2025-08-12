@@ -10,6 +10,6 @@ npm run lint || exit 1
 echo "✅ Lint passed"
 
 echo "🔍 Type checking..."
-npm run type || exit 1
+npm run type-check|| exit 1
 echo "✅ Types validated"
 
