@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run your checks
+npm run lint-fix &&
+npm run lint && 
+echo "✅ Lint passed" && 
+npm run type && 
+echo "✅ Types validated" &&
