@@ -1,9 +1,9 @@
+import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 import { Spinner } from '@/components/spinner'
 import { ChoreItem } from '@/features/chores/components/chore-item'
 import { getChore } from '@/features/chores/queries/get-chore'
-import { notFound } from 'next/navigation'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
