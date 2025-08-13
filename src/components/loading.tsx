@@ -1,5 +1,6 @@
-import loading from '@/app/chores/loading'
 import { LucideLoaderCircle } from 'lucide-react'
+
+import loading from '@/app/chores/loading'
 
 const Loading = () => {
   return (

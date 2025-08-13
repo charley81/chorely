@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
+
 import { Heading } from '@/components/heading'
 import { ChoreList } from '@/features/chores/components/chore-list'
-import { Suspense } from 'react'
+
 import Loading from './loading'
 
 export default async function ChoresPage() {

@@ -1,6 +1,6 @@
+import { getChores } from '../queries/get-chores'
 import { Chore } from '../types'
 import { ChoreItem } from './chore-item'
-import { getChores } from '../queries/get-chores'
 
 const ChoreList = async () => {
   const chores = await getChores()
