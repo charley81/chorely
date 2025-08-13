@@ -1,5 +1,4 @@
 import { getChores } from '../queries/get-chores'
-import { Chore } from '../types'
 import { ChoreItem } from './chore-item'
 
 const ChoreList = async () => {
