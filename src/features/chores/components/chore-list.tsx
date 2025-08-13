@@ -1,20 +1,17 @@
-import { Suspense } from 'react'
-
 import { Chore } from '../types'
 import { ChoreItem } from './chore-item'
+import { getChores } from '../queries/get-chores'
 
-type ChoreListProps = {
-  chores: Chore[]
-}
+const ChoreList = async () => {
+  const chores = await getChores()
 
-export default function ChoreList({ chores }: ChoreListProps) {
   return (
-    <>
-      <Suspense>
-        {chores.map((chore) => (
-          <ChoreItem key={chore.id} chore={chore} />
-        ))}
-      </Suspense>
-    </>
+    <div className="animate-fade-in-from-top flex w-full flex-col items-center gap-y-4">
+      {chores.map((chore) => (
+        <ChoreItem key={chore.id} chore={chore} />
+      ))}
+    </div>
   )
 }
+
+export { ChoreList }
