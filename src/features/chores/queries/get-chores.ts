@@ -1,11 +1,10 @@
-//import { initialChores } from '@/data'
+import { initialChores } from '@/data'
 
 import { Chore } from '../types'
 
 const getChores = async (): Promise<Chore[]> => {
   await new Promise((resolve) => setTimeout(resolve, 2000))
-  throw new Error('chores not found!')
-  // return new Promise((resolve) => resolve(initialChores))
+  return new Promise((resolve) => resolve(initialChores))
 }
 
 export { getChores }
