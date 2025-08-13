@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { Chore } from '../types'
 import { ChoreItem } from './chore-item'
 
@@ -8,9 +10,11 @@ type ChoreListProps = {
 export default function ChoreList({ chores }: ChoreListProps) {
   return (
     <>
-      {chores.map((chore) => (
-        <ChoreItem key={chore.id} chore={chore} />
-      ))}
+      <Suspense>
+        {chores.map((chore) => (
+          <ChoreItem key={chore.id} chore={chore} />
+        ))}
+      </Suspense>
     </>
   )
 }

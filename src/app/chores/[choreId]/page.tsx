@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 import { Placeholder } from '@/components/placeholder'
 import { Button } from '@/components/ui/button'
-import { initialChores } from '@/data'
 import { ChoreItem } from '@/features/chores/components/chore-item'
+import { getChore } from '@/features/chores/queries/get-chore'
 import { choresPath } from '@/paths'
 
 type ChorePageParams = {
@@ -12,8 +12,7 @@ type ChorePageParams = {
 
 export default async function ChorePage({ params }: ChorePageParams) {
   const { choreId } = await params
-
-  const chore = initialChores.find((chore) => chore.id === choreId)
+  const chore = await getChore(choreId)
 
   if (!chore) {
     return (
