@@ -1,12 +1,9 @@
-import Link from 'next/link'
 import { Suspense } from 'react'
 
-import { Placeholder } from '@/components/placeholder'
 import { Spinner } from '@/components/spinner'
-import { Button } from '@/components/ui/button'
 import { ChoreItem } from '@/features/chores/components/chore-item'
 import { getChore } from '@/features/chores/queries/get-chore'
-import { choresPath } from '@/paths'
+import { notFound } from 'next/navigation'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
@@ -17,18 +14,7 @@ export default async function ChorePage({ params }: ChorePageParams) {
   const chore = await getChore(choreId)
 
   if (!chore) {
-    return (
-      <div className="flex justify-between">
-        <Placeholder
-          label="Chore not found..."
-          button={
-            <Button asChild variant="outline" className="flex items-center">
-              <Link href={choresPath()}>Go to chores</Link>
-            </Button>
-          }
-        />
-      </div>
-    )
+    return notFound()
   }
   return (
     <Suspense fallback={<Spinner />}>
