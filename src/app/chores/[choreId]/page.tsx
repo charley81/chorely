@@ -1,13 +1,12 @@
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 import { Placeholder } from '@/components/placeholder'
+import { Spinner } from '@/components/spinner'
 import { Button } from '@/components/ui/button'
 import { ChoreItem } from '@/features/chores/components/chore-item'
 import { getChore } from '@/features/chores/queries/get-chore'
 import { choresPath } from '@/paths'
-import { Heading } from '@/components/heading'
-import { Suspense } from 'react'
-import { Spinner } from '@/components/spinner'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
