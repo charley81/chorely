@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button'
 import { ChoreItem } from '@/features/chores/components/chore-item'
 import { getChore } from '@/features/chores/queries/get-chore'
 import { choresPath } from '@/paths'
+import { Heading } from '@/components/heading'
+import { Suspense } from 'react'
+import { Spinner } from '@/components/spinner'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
@@ -29,8 +32,10 @@ export default async function ChorePage({ params }: ChorePageParams) {
     )
   }
   return (
-    <div className="animate-fade-in-from-top flex justify-center">
-      <ChoreItem chore={chore} isDetail />
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <div className="animate-fade-in-from-top flex justify-center">
+        <ChoreItem chore={chore} isDetail />
+      </div>
+    </Suspense>
   )
 }
