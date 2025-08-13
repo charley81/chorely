@@ -8,7 +8,7 @@ function notFound() {
   return (
     <div className="flex justify-between">
       <Placeholder
-        label="Chore not found..."
+        label="not found..."
         button={
           <Button asChild variant="outline" className="flex items-center">
             <Link href={choresPath()}>Go to chores</Link>
