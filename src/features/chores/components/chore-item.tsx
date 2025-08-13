@@ -1,55 +1,69 @@
 import clsx from 'clsx'
-import { LucideBicepsFlexed, LucideCheck, LucideLockOpen } from 'lucide-react'
+import { LucideArrowBigLeft, LucideEye } from 'lucide-react'
 import Link from 'next/link'
 
-import { buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardAction,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Chore } from '@/data'
-import { chorePath } from '@/paths'
+import { chorePath, choresPath } from '@/paths'
+
+import { CHORE_STATUS } from '../constants'
+import { Chore } from '../types'
 
 type ChoreItemProps = {
   chore: Chore
+  isDetail?: boolean
 }
 
-const CHORE_STATUS = {
-  DONE: <LucideCheck />,
-  OPEN: <LucideLockOpen />,
-  IN_PROGRESS: <LucideBicepsFlexed />,
-}
+export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const backButton = (
+    <Button asChild variant="outline" size="icon">
+      <Link href={choresPath()}>
+        <LucideArrowBigLeft />
+      </Link>
+    </Button>
+  )
+  const detailButton = (
+    <Button asChild variant="outline" size="icon">
+      <Link href={chorePath(chore.id)}>
+        <LucideEye />
+      </Link>
+    </Button>
+  )
 
-export function ChoreItem({ chore }: ChoreItemProps) {
   return (
-    <Card className="w-full max-w-[648px]">
-      <CardHeader>
-        <CardAction className="text-slate-500">
-          {CHORE_STATUS[chore.status]}
-        </CardAction>
-        <CardTitle className="truncate text-2xl font-semibold">
-          {chore.title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent
-        className={clsx('truncate text-base text-slate-500', {
-          'line-through': chore.status === 'DONE',
-        })}
-      >
-        {chore.content}
-      </CardContent>
-      <CardFooter>
-        <Link
-          href={chorePath(chore.id)}
-          className={buttonVariants({ variant: 'outline' })}
+    <div
+      className={clsx('flex w-full justify-center gap-1', {
+        'max-w-[448px]': !isDetail,
+        'max-w-[648px]': isDetail,
+      })}
+    >
+      <Card className="w-full">
+        <CardHeader>
+          <CardAction className="text-slate-500">
+            {CHORE_STATUS[chore.status]}
+          </CardAction>
+          <CardTitle className="truncate text-2xl font-semibold">
+            {chore.title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent
+          className={clsx('text-base text-slate-500', {
+            'line-through': chore.status === 'DONE',
+            'line-clamp-3': !isDetail,
+          })}
         >
-          View Details
-        </Link>
-      </CardFooter>
-    </Card>
+          {chore.content}
+        </CardContent>
+      </Card>
+      <div className="flex flex-col gap-y-1">
+        {isDetail ? <>{backButton}</> : <>{detailButton}</>}
+      </div>
+    </div>
   )
 }

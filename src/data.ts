@@ -1,3 +1,5 @@
+import { Chore } from './features/chores/types'
+
 export const initialChores: Chore[] = [
   {
     id: '1',
@@ -12,10 +14,3 @@ export const initialChores: Chore[] = [
     status: 'OPEN',
   },
 ]
-
-export type Chore = {
-  id: string
-  title: string
-  content: string
-  status: 'DONE' | 'OPEN' | 'IN_PROGRESS'
-}

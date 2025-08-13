@@ -1,10 +1,9 @@
-import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
-import { Heading } from '@/components/heading'
-import { Placeholder } from '@/components/placeholder'
-import { Button } from '@/components/ui/button'
-import { initialChores } from '@/data'
-import { choresPath } from '@/paths'
+import { Spinner } from '@/components/spinner'
+import { ChoreItem } from '@/features/chores/components/chore-item'
+import { getChore } from '@/features/chores/queries/get-chore'
 
 type ChorePageParams = {
   params: Promise<{ choreId: string }>
@@ -12,33 +11,16 @@ type ChorePageParams = {
 
 export default async function ChorePage({ params }: ChorePageParams) {
   const { choreId } = await params
-
-  const chore = initialChores.find((chore) => chore.id === choreId)
+  const chore = await getChore(choreId)
 
   if (!chore) {
-    return (
-      <div className="flex justify-between">
-        <Placeholder
-          label="Chore not found..."
-          button={
-            <Button asChild variant="outline" className="flex items-center">
-              <Link href={choresPath()}>Go to chores</Link>
-            </Button>
-          }
-        />
-      </div>
-    )
+    return notFound()
   }
   return (
-    <>
-      <Heading title="Chore Page" description="Get the details here" />
-      <div className="animate-fade-in-from-top mt-12">
-        <h3>{chore.title}</h3>
-        <p>{chore.content}</p>
-        <Button asChild variant="outline">
-          <Link href={choresPath()}>Back</Link>
-        </Button>
+    <Suspense fallback={<Spinner />}>
+      <div className="animate-fade-in-from-top flex justify-center">
+        <ChoreItem chore={chore} isDetail />
       </div>
-    </>
+    </Suspense>
   )
 }
