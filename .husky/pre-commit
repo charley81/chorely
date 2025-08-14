@@ -1,1 +1,16 @@
-npm test
+echo "Running pre-commit checks...."
+echo "🔧 Fixing lint issues..."
+npm run lint-staged || exit 1
+echo "✅ Lint fixes applied"
+
+echo "➡️ Running pre-push checks..."
+echo "🔍 Linting..."
+npm run lint || exit 1
+echo "✅ Lint passed"
+
+echo "🔍 Type checking..."
+npm run type-check|| exit 1
+echo "✅ Types validated"
+
+git add -u || exit 1
+echo "✅ Added lint fixes to commit"
