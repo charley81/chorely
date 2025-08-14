@@ -11,7 +11,11 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
+  {
+    ignores: ['prisma/**/*', 'src/lib/prisma.ts', 'src/generated/**/*'],
+  },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
+
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
