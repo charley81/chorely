@@ -1,4 +1,5 @@
 import prisma from '@/lib/prisma'
+
 import { Chore } from '../types'
 
 const getChore = async (choreId: string): Promise<Chore | null> => {
