@@ -22,7 +22,6 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "next lint --fix --quiet",
       "prettier --write"
     ]
   },
