@@ -9,8 +9,8 @@ import { Button } from './ui/button'
 export default function MainNav() {
   return (
     <nav className="fixed top-0 right-0 left-0 z-20 flex w-full justify-between gap-x-2 border-b border-slate-500 p-6 font-bold">
-      <Button asChild variant="ghost">
-        <Link href={homePath()} className="text-xl font-bold">
+      <Button asChild variant="ghost" className="text-xl font-black">
+        <Link href={homePath()}>
           <LucideBrushCleaning /> Home
         </Link>
       </Button>
