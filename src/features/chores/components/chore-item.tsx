@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { LucideArrowBigLeft, LucideEye } from 'lucide-react'
+import { LucideArrowBigLeft, LucideEye, LucideTrash } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/card'
 import { chorePath, choresPath } from '@/paths'
 
+import { deleteChore } from '../actions/delete-chore'
 import { CHORE_STATUS } from '../constants'
 import { Chore } from '../types'
 
@@ -21,19 +22,30 @@ type ChoreItemProps = {
 }
 
 export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
+  const deleteChoreWithId = deleteChore.bind(null, chore.id)
+
   const backButton = (
     <Button asChild variant="outline" size="icon">
       <Link href={choresPath()}>
-        <LucideArrowBigLeft />
+        <LucideArrowBigLeft className="h-4 w-4" />
       </Link>
     </Button>
   )
+
   const detailButton = (
     <Button asChild variant="outline" size="icon">
-      <Link href={chorePath(chore.id)}>
-        <LucideEye />
+      <Link prefetch href={chorePath(chore.id)}>
+        <LucideEye className="h-4 w-4" />
       </Link>
     </Button>
+  )
+
+  const deleteButton = (
+    <form action={deleteChoreWithId}>
+      <Button variant="outline" size="icon" className="hover:cursor-pointer">
+        <LucideTrash className="h-4 w-4" />
+      </Button>
+    </form>
   )
 
   return (
@@ -62,7 +74,14 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         </CardContent>
       </Card>
       <div className="flex flex-col gap-y-1">
-        {isDetail ? <>{backButton}</> : <>{detailButton}</>}
+        {isDetail ? (
+          <>
+            {backButton}
+            {deleteButton}
+          </>
+        ) : (
+          <>{detailButton}</>
+        )}
       </div>
     </div>
   )
