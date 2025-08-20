@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { LucideArrowBigLeft, LucideEye, LucideTrash } from 'lucide-react'
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
+import { TooltipButton } from '@/components/tooltip-button'
 import {
   Card,
   CardAction,
@@ -25,26 +25,32 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
   const deleteChoreWithId = deleteChore.bind(null, chore.id)
 
   const backButton = (
-    <Button asChild variant="outline" size="icon">
+    <TooltipButton tooltip="Go back" size="icon" variant="outline" asChild>
       <Link href={choresPath()}>
         <LucideArrowBigLeft className="h-4 w-4" />
       </Link>
-    </Button>
+    </TooltipButton>
   )
 
   const detailButton = (
-    <Button asChild variant="outline" size="icon">
+    <TooltipButton tooltip="View details" size="icon" variant="outline" asChild>
       <Link prefetch href={chorePath(chore.id)}>
         <LucideEye className="h-4 w-4" />
       </Link>
-    </Button>
+    </TooltipButton>
   )
 
   const deleteButton = (
     <form action={deleteChoreWithId}>
-      <Button variant="outline" size="icon" className="hover:cursor-pointer">
+      <TooltipButton
+        variant="outline"
+        size="icon"
+        className="hover:cursor-pointer"
+        tooltip="Delete chore"
+        type="submit"
+      >
         <LucideTrash className="h-4 w-4" />
-      </Button>
+      </TooltipButton>
     </form>
   )
 
