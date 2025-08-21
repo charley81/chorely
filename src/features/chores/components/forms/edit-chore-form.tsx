@@ -2,12 +2,18 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { Chore } from '@/generated/prisma'
 
-import { createChore } from '../../actions/create-chore'
+import { editChore } from '../../actions/edit-chore'
 
-export function CreateChoreForm() {
+type EditChoreFormProps = {
+  chore: Chore
+}
+
+export function EditChoreForm({ chore }: EditChoreFormProps) {
+  const editChoreWithId = editChore.bind(null, chore.id)
   return (
-    <form action={createChore} className="flex flex-col gap-y-6">
+    <form action={editChoreWithId} className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
         <Label htmlFor="title">Title</Label>
         <Input
@@ -15,6 +21,7 @@ export function CreateChoreForm() {
           id="title"
           placeholder="add title..."
           name="title"
+          defaultValue={chore.title}
           required
         />
       </div>
@@ -24,10 +31,11 @@ export function CreateChoreForm() {
           id="content"
           placeholder="add description..."
           name="content"
+          defaultValue={chore.content}
           required
         />
       </div>
-      <Button type="submit">Create</Button>
+      <Button type="submit">Edit</Button>
     </form>
   )
 }

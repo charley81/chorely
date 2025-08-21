@@ -1,5 +1,10 @@
 import clsx from 'clsx'
-import { LucideArrowBigLeft, LucideEye, LucideTrash } from 'lucide-react'
+import {
+  LucideArrowBigLeft,
+  LucideEye,
+  LucidePencil,
+  LucideTrash,
+} from 'lucide-react'
 import Link from 'next/link'
 
 import { TooltipButton } from '@/components/tooltip-button'
@@ -10,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { chorePath, choresPath } from '@/paths'
+import { chorePath, choresPath, editChorePath } from '@/paths'
 
 import { deleteChore } from '../actions/delete-chore'
 import { CHORE_STATUS } from '../constants'
@@ -54,6 +59,14 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
     </form>
   )
 
+  const editButton = (
+    <TooltipButton tooltip="Edit chore" size="icon" variant="outline" asChild>
+      <Link prefetch href={editChorePath(chore.id)}>
+        <LucidePencil className="h-4 w-4" />
+      </Link>
+    </TooltipButton>
+  )
+
   return (
     <div
       className={clsx('flex w-full justify-center gap-1', {
@@ -83,6 +96,7 @@ export function ChoreItem({ chore, isDetail }: ChoreItemProps) {
         {isDetail ? (
           <>
             {backButton}
+            {editButton}
             {deleteButton}
           </>
         ) : (
