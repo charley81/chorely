@@ -21,7 +21,7 @@ export function TooltipButton({
 }: TooltipButtonProps) {
   return (
     <Tooltip>
-      <TooltipTrigger asChild={asChild}>
+      <TooltipTrigger asChild>
         <Button type={type} asChild={asChild} {...buttonProps}>
           {children}
         </Button>
