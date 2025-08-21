@@ -4,7 +4,7 @@ import { CardCompact } from '@/components/card-compact'
 import { Heading } from '@/components/heading'
 import { Spinner } from '@/components/spinner'
 import { ChoreList } from '@/features/chores/components/chore-list'
-import { CreateChoreForm } from '@/features/chores/components/forms/create-chore-form'
+import { ChoreUpsertForm } from '@/features/chores/components/chore-upsert-form'
 
 export default function ChoresPage() {
   return (
@@ -14,7 +14,7 @@ export default function ChoresPage() {
       <CardCompact
         title="Create Chore"
         description="A new chore will be created"
-        content={<CreateChoreForm />}
+        content={<ChoreUpsertForm />}
         className="w-full max-w-[448px] self-center"
       />
 
