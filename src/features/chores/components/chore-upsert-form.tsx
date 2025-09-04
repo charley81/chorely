@@ -1,4 +1,9 @@
-import { Button } from '@/components/ui/button'
+'use client'
+
+import { useActionState } from 'react'
+
+import { FieldError } from '@/components/form/field-error'
+import { SubmitButton } from '@/components/form/submit-button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -11,10 +16,16 @@ type ChoreUpsertFormProps = {
 }
 
 export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
-  const upsertChoreWithId = upsertChore.bind(null, chore?.id)
-
+  const [actionState, action] = useActionState(
+    upsertChore.bind(null, chore?.id),
+    {
+      message: '',
+      payload: new FormData(),
+      fieldErrors: {},
+    },
+  )
   return (
-    <form action={upsertChoreWithId} className="flex flex-col gap-y-6">
+    <form action={action} className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
         <Label htmlFor="title">Title</Label>
         <Input
@@ -22,9 +33,11 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
           id="title"
           placeholder="add title..."
           name="title"
-          defaultValue={chore?.title}
-          required
+          defaultValue={
+            (actionState?.payload?.get('title') as string) ?? chore?.title
+          }
         />
+        <FieldError actionState={actionState} name="title" />
       </div>
       <div className="flex flex-col gap-y-2">
         <Label htmlFor="content">Description</Label>
@@ -32,11 +45,13 @@ export function ChoreUpsertForm({ chore }: ChoreUpsertFormProps) {
           id="content"
           placeholder="add description..."
           name="content"
-          defaultValue={chore?.content}
-          required
+          defaultValue={
+            (actionState?.payload?.get('content') as string) ?? chore?.content
+          }
         />
+        <FieldError actionState={actionState} name="content" />
       </div>
-      <Button type="submit">Create</Button>
+      <SubmitButton label={chore ? 'Edit' : 'Create'} />
     </form>
   )
 }
