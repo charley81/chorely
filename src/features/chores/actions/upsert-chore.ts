@@ -6,6 +6,7 @@ import * as z from 'zod'
 import {
   ActionState,
   fromErrorToActionState,
+  toActionState,
 } from '@/components/form/utils/to-action-state'
 import prisma from '@/lib/prisma'
 import { choresPath } from '@/paths'
@@ -42,4 +43,6 @@ export const upsertChore = async (
   if (id) {
     redirect(choresPath())
   }
+
+  return toActionState('SUCCESS', 'chore created...')
 }
