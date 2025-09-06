@@ -24,13 +24,13 @@ export function useActionFeedback({
   const isUpdated = prevTimestamp.current !== actionState?.timestamp
 
   useEffect(() => {
-    if (!isUpdated) return
+    if (!isUpdated || !actionState?.message) return
 
     if (actionState?.status === 'SUCCESS') {
       onSuccess?.({ actionState })
     }
 
-    if (actionState?.status === 'ERROR') {
+    if (actionState?.status === 'ERROR' && actionState.message) {
       onError?.({ actionState })
     }
 
