@@ -3,9 +3,11 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import * as z from 'zod'
 
+import { setCookieByKey } from '@/actions/cookies'
 import {
   ActionState,
   fromErrorToActionState,
+  toActionState,
 } from '@/components/form/utils/to-action-state'
 import prisma from '@/lib/prisma'
 import { choresPath } from '@/paths'
@@ -40,6 +42,9 @@ export const upsertChore = async (
   revalidatePath(choresPath())
 
   if (id) {
+    await setCookieByKey('toast', 'Chore updated successfully')
     redirect(choresPath())
   }
+
+  return toActionState('SUCCESS', 'chore created...')
 }
