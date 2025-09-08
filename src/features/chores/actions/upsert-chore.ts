@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import * as z from 'zod'
 
+import { setCookieByKey } from '@/actions/cookies'
 import {
   ActionState,
   fromErrorToActionState,
@@ -41,6 +42,7 @@ export const upsertChore = async (
   revalidatePath(choresPath())
 
   if (id) {
+    await setCookieByKey('toast', 'Chore updated successfully')
     redirect(choresPath())
   }
 

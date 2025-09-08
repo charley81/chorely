@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
+import { RedirectToast } from '@/components/redirect-toast'
 import { Spinner } from '@/components/spinner'
 import { ChoreItem } from '@/features/chores/components/chore-item'
 import { getChore } from '@/features/chores/queries/get-chore'
@@ -18,9 +19,13 @@ export default async function ChorePage({ params }: ChorePageParams) {
   }
   return (
     <Suspense fallback={<Spinner />}>
-      <div className="animate-fade-in-from-top flex justify-center">
-        <ChoreItem chore={chore} isDetail />
-      </div>
+      <>
+        <div className="animate-fade-in-from-top flex justify-center">
+          <ChoreItem chore={chore} isDetail />
+        </div>
+
+        <RedirectToast />
+      </>
     </Suspense>
   )
 }
