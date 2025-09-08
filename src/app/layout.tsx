@@ -5,7 +5,9 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Toaster } from 'sonner'
 
 import MainNav from '@/components/main-nav'
+import { RedirectToast } from '@/components/redirect-toast'
 import { ThemeProvider } from '@/components/theme/theme-provider'
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -42,6 +44,7 @@ export default function RootLayout({
             {children}
           </main>
           <Toaster expand />
+          <RedirectToast />
         </ThemeProvider>
       </body>
     </html>
